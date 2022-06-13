@@ -1,0 +1,212 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+class Settings_Screen extends StatelessWidget {
+  static String id = 'settings_page';
+  const Settings_Screen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
+    double _height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      backgroundColor: Color(0xFFEFF3F4),
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 75,
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: SizedBox(
+            height: 140,
+            width: 200,
+            child: Image.asset("assets/pngs/logobg1.png")),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            CupertinoIcons.chevron_back,
+            color: Colors.grey,
+          ),
+        ),
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.profile_circled, color: Colors.grey,size: 26,),),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 60,
+              width: _width,
+              decoration: BoxDecoration(
+                color: Color(0xFFE3E7E8),
+                border: Border(
+                    bottom: BorderSide(
+                      color: Colors.black12,
+                    )),
+              ),
+              child: Center(
+                child: Text(
+                  "Settings",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Poppins-Medium",
+                    color: Color(0xFF303F46),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: SizedBox(
+                height: 650,
+                child: ListView(
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.person,
+                          color: Colors.green,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          "Account",
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      height: 15,
+                      thickness: 2,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    buildAccountOptionRow(context, "Change password"),
+                    buildAccountOptionRow(context, "Content settings"),
+                    buildAccountOptionRow(context, "Policies"),
+                    buildAccountOptionRow(context, "Language"),
+                    buildAccountOptionRow(context, "Privacy and security"),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.notifications_active,
+                          color: Colors.green,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          "Notifications",
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      height: 15,
+                      thickness: 2,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    buildNotificationOptionRow("Policy Updates", true),
+                    buildNotificationOptionRow("Customer Support", true),
+                    buildNotificationOptionRow("RoadSide Assistance", false),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Center(
+                      child: OutlineButton(
+                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        onPressed: () {},
+                        child: Text("SIGN OUT",
+                            style: TextStyle(
+                                fontSize: 16, letterSpacing: 2.2, color: Colors.black)),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+  Row buildNotificationOptionRow(String title, bool isActive) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+              fontSize: 18,
+              fontFamily: "Poppins-Light",
+              color: Colors.grey[600]),
+        ),
+        Transform.scale(
+            scale: 0.7,
+            child: CupertinoSwitch(
+              value: isActive,
+              onChanged: (bool val) {},
+            ))
+      ],
+    );
+  }
+
+  GestureDetector buildAccountOptionRow(BuildContext context, String title) {
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(title),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text("Option 1"),
+                    Text("Option 2"),
+                    Text("Option 3"),
+                  ],
+                ),
+                actions: [
+                  FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("Close")),
+                ],
+              );
+            });
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: "Poppins-Light",
+                color: Colors.grey[600],
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

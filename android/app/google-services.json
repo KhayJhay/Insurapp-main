@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "51432185674",
+    "project_id": "insurapp-984fb",
+    "storage_bucket": "insurapp-984fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51432185674:android:9364838af7f9e858842bb3",
+        "android_client_info": {
+          "package_name": "com.example.insurapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51432185674-t4vqo5276r7ca7tcgqk6c8f9j4p6es5o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.insurapp",
+            "certificate_hash": "3d79a5706e5b661776208d146843c06de5989656"
+          }
+        },
+        {
+          "client_id": "51432185674-ddtlr5vh66kb4dnh7m7ri1it1hb9ihcr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcNeyhR8hEnk-4DpTep6dfeWPFnSrVxNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51432185674-ddtlr5vh66kb4dnh7m7ri1it1hb9ihcr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
