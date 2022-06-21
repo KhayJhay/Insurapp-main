@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:insurapp/Home/checkerpage/policy_details.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../data_service/insura_data.dart';
@@ -364,31 +365,46 @@ class _CheckerTabState extends State<CheckerTab> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "REVIEW",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                            letterSpacing: 2,
-                            fontFamily: "Poppins-SemiBold",
+                        TextButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, PolicyDetails.id);
+                          },
+                          child: Text(
+                            "REVIEW",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                              letterSpacing: 2,
+                              fontFamily: "Poppins-SemiBold",
+                            ),
                           ),
                         ),
-                        Text(
-                          "SEND MEMO",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                            letterSpacing: 2,
-                            fontFamily: "Poppins-SemiBold",
+                        TextButton(
+                          onPressed: (){
+
+                          },
+                          child: Text(
+                            "SEND MEMO",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                              letterSpacing: 2,
+                              fontFamily: "Poppins-SemiBold",
+                            ),
                           ),
                         ),
-                        Text(
-                          "SHARE",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                            letterSpacing: 2,
-                            fontFamily: "Poppins-SemiBold",
+                        TextButton(
+                          onPressed: (){
+
+                          },
+                          child: Text(
+                            "SHARE",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                              letterSpacing: 2,
+                              fontFamily: "Poppins-SemiBold",
+                            ),
                           ),
                         ),
                       ],
