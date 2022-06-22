@@ -30,7 +30,7 @@ class MenuPage extends StatelessWidget {
     body: SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           Spacer(),
           ...MenuItems.all.map(buildMenuItem).toList(),
           Spacer(flex: 2,),

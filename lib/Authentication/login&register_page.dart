@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:insurapp/Authentication/createuser.dart';
-import 'package:provider/provider.dart';
+import 'package:insurapp/Authentication/userCredential.dart';
 import '../Widgets/authWedget.dart';
-import 'google_sign_in.dart';
+import 'resetpassword.dart';
 
 class Login_Register_Page extends StatefulWidget {
   const Login_Register_Page({Key? key}) : super(key: key);
@@ -89,7 +88,7 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
                     Text(
                       isSignupScreen
                           ? "Signup to Continue"
-                          : "Sign to Continue",
+                          : "Signin to Continue",
                       style: TextStyle(
                         fontSize: 16,
                         fontFamily: 'Poppins-Light',
@@ -169,7 +168,7 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Poppins-Light',
                                     color: isSignupScreen
-                                        ?  Color(0xFF44A8E0)
+                                        ? Color(0xFF44A8E0)
                                         : Colors.grey),
                               ),
                               if (isSignupScreen)
@@ -184,180 +183,89 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
                         ),
                       ],
                     ),
-                    if (!isSignupScreen) SizedBox(height: 25,),
-                    if (isSignupScreen) SizedBox(height: 15,),
+                    if (!isSignupScreen)
+                      SizedBox(
+                        height: 25,
+                      ),
+                    if (isSignupScreen)
+                      SizedBox(
+                        height: 15,
+                      ),
                     if (isSignupScreen) buildSIgnUpSection(),
                     if (!isSignupScreen) buildLoginSection(),
                   ],
                 ),
               )),
-          buildSubmitBottomContainer(false),
-          if (!isSignupScreen)Positioned(
-              top: 550,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: ()  {
-                        final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-                        provider.googleLogin();
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 18),
-                        height: _height*0.075,
-                        width: _width - 78,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFF44A8E0),
-                                Color(0xFFA7CD3A),
-                              ],
-                            ),
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(40),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.3),
-                                  blurRadius: 15,
-                                  spreadRadius: 5),
-                            ]),
-                        alignment: Alignment.center,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25.0),
-                              child: FaIcon(FontAwesomeIcons.google, size: 25,color: Colors.white),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 30.0),
-                              child: Text(
-                                "Continue With Google",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontFamily: 'Poppins-Light',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: _height*0.04,
-                    ),
-                    GestureDetector(
-                      onTap: () {
 
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 18),
-                        height: _height*0.075,
-                        width: _width - 78,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFF44A8E0),
-                                Color(0xFFA7CD3A),
-                              ],
-                            ),
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(40),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.3),
-                                  blurRadius: 15,
-                                  spreadRadius: 5),
-                            ]),
-                        alignment: Alignment.center,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25.0),
-                              child: FaIcon(FontAwesomeIcons.apple, size: 25,color: Colors.white,),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 30.0),
-                              child: Text(
-                                "Continue With Apple",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontFamily: 'Poppins-Light',
+          //third party authentications
+          buildSubmitBottomContainer(false),
+          if (!isSignupScreen)
+            Positioned(
+                top: 550,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      //google authentication
+                      GestureDetector(
+                        onTap: () {
+                          Auth.signinWithGoogle(context: context);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 18),
+                          height: _height * 0.075,
+                          width: _width - 78,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color(0xFF44A8E0),
+                                  Color(0xFFA7CD3A),
+                                ],
+                              ),
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(40),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.3),
+                                    blurRadius: 15,
+                                    spreadRadius: 5),
+                              ]),
+                          alignment: Alignment.center,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 25.0),
+                                child: FaIcon(FontAwesomeIcons.google,
+                                    size: 25, color: Colors.white),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 30.0),
+                                child: Text(
+                                  "Continue With Google",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontFamily: 'Poppins-Light',
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: _height*0.04,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Scaffold()));
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 18),
-                        height: _height*0.075,
-                        width: _width - 78,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFF44A8E0),
-                                Color(0xFFA7CD3A),
-                              ],
-                            ),
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(40),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.3),
-                                  blurRadius: 15,
-                                  spreadRadius: 5),
-                            ]),
-                        alignment: Alignment.center,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25.0),
-                              child: Icon(CupertinoIcons.phone_solid, size: 25,color: Colors.white,),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 30.0),
-                              child: Text(
-                                "Continue With Phone",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontFamily: 'Poppins-Light',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )),
+                    ],
+                  ),
+                )),
         ],
       ),
     );
   }
 
+  // loading button
   Container loading() {
     return Container(
         padding: const EdgeInsets.all(10),
@@ -379,6 +287,7 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
         ));
   }
 
+  // login section
   Container buildLoginSection() {
     return Container(
       margin: EdgeInsets.only(top: 20),
@@ -387,8 +296,8 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              buildTextField(emailController, CupertinoIcons.mail,
-                  "Email", false, true),
+              buildTextField(
+                  emailController, CupertinoIcons.mail, "Email", false, true),
               buildTextField(passController, CupertinoIcons.lock_circle,
                   "Enter Password", true, false),
               Row(
@@ -412,6 +321,20 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
                       ),
                     ],
                   ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => ForgottenPassword()),
+                      );
+                    },
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.red,
+                      ),
+                    ),
+                  )
                 ],
               ),
             ],
@@ -421,6 +344,7 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
     );
   }
 
+  // sign-up section
   Container buildSIgnUpSection() {
     return Container(
       margin: EdgeInsets.only(top: 20),

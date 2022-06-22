@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 
 import '../Models/insura_.model.dart';
 
-
 //class for insuradata
 class InsuraData {
   //get insura data
@@ -12,17 +11,18 @@ class InsuraData {
     List<InsuraCardModel> cards = []; //list of insura cards
 
     final CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection('insuracard'); //getting data from 
+        FirebaseFirestore.instance.collection('insuracard'); //getting data from
 
-    try { //checking for error
+    try {
+      //checking for error
       await collectionReference.get().then((value) {
         for (var result in value.docs) {
           //adding card to card list
           cards.add(InsuraCardModel(
             policyNumber: result['policyNumber'],
             year: result['year'],
-            effectiveDate: result['effectiveDate'],
-            expirationDate: result['expirationDate'],
+            effectiveDate: result['effective_date'],
+            expirationDate: result['expiration_date'],
             company: result['company'],
             maker: result['maker'],
             naic: result['naic'],
@@ -45,27 +45,31 @@ class InsuraData {
   }
 
   //checker function
-  void checker(BuildContext context, String id) async {
+  static Future checker(BuildContext context, String id) async {
     List<InsuraCardModel> polcy = []; //policy list
 
-    bool isFound = false; 
     DateTime now = DateTime.now();
     InsuraCardModel cardModel;
 
-    final CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection('insuracard'); //getting all policy
+    bool isExpActive = false;
+
+//getting all policy
+    final collectionReference =
+        FirebaseFirestore.instance.collection('insuracard');
 
     try {
       await collectionReference.get().then((value) {
         for (var result in value.docs) {
+          print("Date here: " + value.toString());
+          // ---
           polcy.add(InsuraCardModel(
             policyNumber: result['policyNumber'],
             year: result['year'],
-            effectiveDate: result['effectiveDate'],
-            expirationDate: result['expirationDate'],
+            effectiveDate: result['effective_date'].toDate(),
+            expirationDate: result['expiration_date'].toDate(),
             company: result['company'],
             maker: result['maker'],
-            naic: result['naic'],
+            naic: result['naic'].toString(),
             vin: result['vin'],
             insured: result['insured'],
           ));
@@ -81,22 +85,26 @@ class InsuraData {
         btnOkOnPress: () {},
       )..show();
     }
+    //looping through all the policy list
+    polcy.forEach((element) {
+      //checking if the id is in one of them
+      if (id == element.policyNumber) {
+        cardModel = polcy.firstWhere(
+            (card) => card.policyNumber == id); //signing to policy to a card
 
-    polcy.forEach((element) { //looping through all the policy list
-      if (id == element.policyNumber) { //checking if the id is in one of them
-      
-        cardModel = polcy.firstWhere((card) => card.policyNumber == id); //signing to policy to a card
-        final expirationDate = DateTime( 
+        final expirationDate = DateTime(
             cardModel.expirationDate!.year.toInt(),
             cardModel.expirationDate!.month.toInt(),
-            cardModel.expirationDate!.day.toInt());
+            cardModel.expirationDate!.day.toInt(),
+            );
 
-        bool isExpira = expirationDate.isBefore(now); //check for expiration date 
+        bool isExpira =
+            expirationDate.isBefore(now); //check for expiration date
 
         if (isExpira) {
-          print('Is expired');
+          isExpActive = false;
         } else {
-          print('Is not expired');
+          isExpActive = true;
         }
       } else {
         AwesomeDialog(
@@ -109,5 +117,10 @@ class InsuraData {
         )..show();
       }
     });
+
+    return {
+      'data': '',
+      'isExpired': isExpActive,
+    };
   }
 }

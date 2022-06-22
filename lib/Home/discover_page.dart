@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 class Discover_Page extends StatefulWidget {
   const Discover_Page({Key? key}) : super(key: key);

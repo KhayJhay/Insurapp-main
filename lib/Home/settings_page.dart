@@ -1,5 +1,12 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+
+import '../Authentication/userCredential.dart';
+import '../Authentication/login&register_page.dart';
+
 class Settings_Screen extends StatelessWidget {
   static String id = 'settings_page';
   const Settings_Screen({Key? key}) : super(key: key);
@@ -29,7 +36,14 @@ class Settings_Screen extends StatelessWidget {
           ),
         ),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.profile_circled, color: Colors.grey,size: 26,),),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              CupertinoIcons.profile_circled,
+              color: Colors.grey,
+              size: 26,
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -42,8 +56,8 @@ class Settings_Screen extends StatelessWidget {
                 color: Color(0xFFE3E7E8),
                 border: Border(
                     bottom: BorderSide(
-                      color: Colors.black12,
-                    )),
+                  color: Colors.black12,
+                )),
               ),
               child: Center(
                 child: Text(
@@ -73,7 +87,8 @@ class Settings_Screen extends StatelessWidget {
                         ),
                         Text(
                           "Account",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -103,7 +118,8 @@ class Settings_Screen extends StatelessWidget {
                         ),
                         Text(
                           "Notifications",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -125,10 +141,20 @@ class Settings_Screen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 40),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
-                        onPressed: () {},
+                        onPressed: () {
+                          SchedulerBinding.instance!.addPostFrameCallback((_) {
+                            Auth.signout(context: context);
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => Login_Register_Page()),
+                            );
+                          });
+                        },
                         child: Text("SIGN OUT",
                             style: TextStyle(
-                                fontSize: 16, letterSpacing: 2.2, color: Colors.black)),
+                                fontSize: 16,
+                                letterSpacing: 2.2,
+                                color: Colors.black)),
                       ),
                     )
                   ],
@@ -140,6 +166,7 @@ class Settings_Screen extends StatelessWidget {
       ),
     );
   }
+
   Row buildNotificationOptionRow(String title, bool isActive) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

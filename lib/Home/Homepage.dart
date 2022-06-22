@@ -9,11 +9,10 @@ import 'package:insurapp/Home/services.dart';
 import 'package:insurapp/Home/settings_page.dart';
 import 'package:insurapp/Sub-menu/about_insurapp.dart';
 import 'package:insurapp/Sub-menu/contact_page.dart';
-import 'package:insurapp/Sub-menu/customer_serv_chat.dart';
-import 'package:insurapp/Sub-menu/help&support.dart';
 import 'package:lottie/lottie.dart';
 
 import '../Models/users.dart';
+import '../Sub-menu/help&support.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -25,6 +24,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
+
+  //getting users by default
   @override
   void initState(){
     super.initState();

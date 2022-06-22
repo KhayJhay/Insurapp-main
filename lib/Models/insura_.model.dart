@@ -1,3 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 class InsuraCardModel {
   String? policyNumber;
   String? year;
@@ -21,6 +25,8 @@ class InsuraCardModel {
     this.naic,
   });
 
+  late BuildContext context;
+
   InsuraCardModel.fromJson(Map<String, dynamic> json) {
     policyNumber = json['policyNumber'];
     year = json['year'];
@@ -28,8 +34,14 @@ class InsuraCardModel {
     insured = json['insured'];
     company = json['company'];
     vin = json['vin'];
-    effectiveDate = json['effective_date'];
-    expirationDate = json['expiration_date'];
+    effectiveDate = (Theme.of(context).platform == TargetPlatform.iOS
+            ? DateFormat('dd MMM kk:mm').format(json['effective_date'].toDate())
+            : DateFormat('dd MMM kk:mm').format(json['effective_date'].toDate()))
+        as DateTime?;
+    expirationDate = (Theme.of(context).platform == TargetPlatform.iOS
+        ? DateFormat('dd MMM kk:mm').format(json['expiration_date'].toDate())
+        : DateFormat('dd MMM kk:mm')
+            .format(json['expiration_date'].toDate())) as DateTime?;
     naic = json['naic'];
   }
 

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BlogCategory {
   String? catID;
   String? title;
@@ -40,7 +42,7 @@ class Blog {
     categoryID = json['categoryID'];
     description = json['description'];
     bgImage = json['bgImage'];
-    createdOn = json['created_on'];
+    createdOn = (json['created_on'] as Timestamp).toDate();
   }
 
   Map<String, dynamic> toJson() {

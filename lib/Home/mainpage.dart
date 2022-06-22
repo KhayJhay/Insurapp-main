@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurapp/Home/Homepage.dart';
-import 'package:insurapp/Sub-menu/customer_serv_chat.dart';
 import 'package:insurapp/Home/discover_page.dart';
 import 'package:insurapp/Home/profile_page.dart';
 import 'package:insurapp/Home/start_claim.dart';
@@ -18,7 +17,7 @@ class Mainpage extends StatefulWidget {
 class _MainpageState extends State<Mainpage> {
   int index = 0;
 
-  final pages = <Widget>[
+  final pages = [
     HomePage(),
     Help_Support(),
     Discover_Page(),
