@@ -67,7 +67,7 @@ class About_Insurapp extends StatelessWidget {
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 20.0,right: 20),
+                padding: const EdgeInsets.only(left: 10.0,right: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -75,7 +75,7 @@ class About_Insurapp extends StatelessWidget {
                       text: const TextSpan(
                         children: [
                           TextSpan(
-                            text:"        "
+                            text:"     "
                                 "Who We Service",
                             style: TextStyle(
                               fontSize: 28,

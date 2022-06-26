@@ -1,12 +1,35 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+class DigitalIDModel {
+  String? userId;
+  String? profile;
+  String? policyCard;
+
+  DigitalIDModel({this.userId, this.profile, this.policyCard});
+
+  DigitalIDModel.fromJson(Map<String, dynamic> json) {
+    userId = json['userId'];
+    profile = json['profile'];
+    policyCard = json['policyCard'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = this.userId;
+    data['profile'] = this.profile;
+    data['policyCard'] = this.policyCard;
+    return data;
+  }
+}
+
 class InsuraCardModel {
+  String? id;
   String? policyNumber;
   String? year;
   String? maker;
   String? insured;
+  String? model;
   String? company;
   String? vin;
   DateTime? effectiveDate;
@@ -14,10 +37,12 @@ class InsuraCardModel {
   String? naic;
 
   InsuraCardModel({
+    this.id,
     this.policyNumber,
     this.year,
     this.maker,
     this.insured,
+    this.model,
     this.company,
     this.vin,
     this.effectiveDate,
@@ -28,16 +53,18 @@ class InsuraCardModel {
   late BuildContext context;
 
   InsuraCardModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     policyNumber = json['policyNumber'];
     year = json['year'];
     maker = json['maker'];
     insured = json['insured'];
+    model = json['model'];
     company = json['company'];
     vin = json['vin'];
     effectiveDate = (Theme.of(context).platform == TargetPlatform.iOS
-            ? DateFormat('dd MMM kk:mm').format(json['effective_date'].toDate())
-            : DateFormat('dd MMM kk:mm').format(json['effective_date'].toDate()))
-        as DateTime?;
+        ? DateFormat('dd MMM kk:mm').format(json['effective_date'].toDate())
+        : DateFormat('dd MMM kk:mm')
+            .format(json['effective_date'].toDate())) as DateTime?;
     expirationDate = (Theme.of(context).platform == TargetPlatform.iOS
         ? DateFormat('dd MMM kk:mm').format(json['expiration_date'].toDate())
         : DateFormat('dd MMM kk:mm')
@@ -47,10 +74,12 @@ class InsuraCardModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     data['policyNumber'] = policyNumber;
     data['year'] = year;
     data['maker'] = maker;
     data['insured'] = insured;
+    data['model'] = model;
     data['company'] = company;
     data['vin'] = vin;
     data['effective_date'] = effectiveDate;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:insurapp/OnBording/introduction_page.dart';
 
 
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                width: 250,
+                width: 350,
                 child: Image.asset("assets/pngs/logobg2.png",
                   fit: BoxFit.cover,
                 ),
@@ -41,8 +41,8 @@ class _SplashScreenState extends State<SplashScreen> {
               SizedBox(
                 height: 60,
               ),
-              CircularProgressIndicator(
-                color:  Color(0xFFA7CD3A),
+              SpinKitSpinningLines (
+                color: Colors.lightGreen,
               ),
             ],
           ),

@@ -5,7 +5,6 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
 
 import 'Authentication/userCredential.dart';
-import 'Home/checkerpage/policy_details.dart';
 import 'Home/edit_profile_page.dart';
 import 'Home/mainpage.dart';
 import 'Home/notifications_page.dart';
@@ -46,7 +45,6 @@ class MyApp extends StatelessWidget {
               Edit_Profile_Page.id: (context) => Edit_Profile_Page(),
               Settings_Screen.id: (context) => Settings_Screen(),
               Notifications_Page.id: (context) => Notifications_Page(),
-              PolicyDetails.id: (context) => PolicyDetails(),
             },
           );
         }

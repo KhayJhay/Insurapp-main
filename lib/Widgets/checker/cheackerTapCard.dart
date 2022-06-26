@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../Home/checkerpage/digitalForm.dart';
 import '../../Home/checkerpage/policy_details.dart';
+import '../../Models/insura_.model.dart';
 import '../../data_service/insura_data.dart';
 
 class CheckerTab extends StatefulWidget {
@@ -14,12 +17,17 @@ class CheckerTab extends StatefulWidget {
 
 class _CheckerTabState extends State<CheckerTab> {
   final idNumberController = TextEditingController();
+  InsuraCardModel cardModel = InsuraCardModel();
 
   bool isSearch = false;
+  bool isActive = false;
+
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    var userName = FirebaseAuth.instance.currentUser!.displayName;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -52,7 +60,7 @@ class _CheckerTabState extends State<CheckerTab> {
                     Padding(
                       padding: const EdgeInsets.all(14.0),
                       child: Text(
-                        "Hello, Koya Brown! Check Your \nVehicle Policy Status Here",
+                        "Hello, $userName! Check Your \nVehicle Policy Status Here",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: "Poppins-Bold",
@@ -92,7 +100,7 @@ class _CheckerTabState extends State<CheckerTab> {
                             hintText: "Enter Policy Number",
                             hintStyle: TextStyle(
                               color: Colors.black.withOpacity(0.5),
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                             enabledBorder: InputBorder.none,
                             focusedBorder: InputBorder.none,
@@ -103,14 +111,19 @@ class _CheckerTabState extends State<CheckerTab> {
                         onTap: () {
                           InsuraData.checker(context, idNumberController.text)
                               .then((response) {
-                            if (response['isExpired'].toDate()) {
-                              // it has expired
+                            if (response['status'] == false) {
+                              setState(() {
+                                isActive = true;
+                                cardModel = response['data'];
+                                isSearch = true;
+                              });
                             } else {
-                              ///not expired
+                              setState(() {
+                                isActive = false;
+                                cardModel = response['data'];
+                                isSearch = true;
+                              });
                             }
-                          });
-                          setState(() {
-                            isSearch = true;
                           });
                         },
                         child: Container(
@@ -169,13 +182,14 @@ class _CheckerTabState extends State<CheckerTab> {
               ),
             ),
           ),
-        if (isSearch == true) statusCard(_width, _height),
+        if (isSearch == true) statusCard(_width, _height, cardModel, isActive),
       ],
     );
   }
 
   // status card
-  Padding statusCard(double _width, double _height) {
+  Padding statusCard(
+      double _width, double _height, InsuraCardModel cardModel, bool isActive) {
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Container(
@@ -201,7 +215,17 @@ class _CheckerTabState extends State<CheckerTab> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => DigitalForm(
+                            cardID: cardModel.id,
+                            policyID: cardModel.policyNumber,
+                            isActive: isActive,
+                          ),
+                        ),
+                      );
+                    },
                     icon: Icon(
                       CupertinoIcons.ellipsis,
                       color: Color(0xFF303F46),
@@ -215,44 +239,55 @@ class _CheckerTabState extends State<CheckerTab> {
                 child: Row(
                   children: [
                     Icon(
-                      CupertinoIcons.check_mark_circled,
+                      isActive
+                          ? CupertinoIcons.check_mark_circled
+                          : CupertinoIcons.multiply_circle,
                       size: _height <= 700 ? 50 : 60,
-                      color: Color(0xFFA7CD3A),
+                      color: isActive ? Color(0xFFA7CD3A) : Colors.red,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          RichText(
-                            text: const TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: "Insurance Policy Active",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Color(0xFF303F46),
-                                    fontFamily: "Poppins-Bold",
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: "\nPhilip & Cater Insurance PLC",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Color(0xFFA7CD3A),
-                                    fontFamily: "Poppins-Bold",
-                                  ),
-                                ),
-                                TextSpan(
-                                    text: "\nInsurance type: Vehicle Insurance",
+                          FittedBox(
+                            child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: isActive
+                                        ? "Insurance Policy Active"
+                                        : "Insurance Policy Inactive",
                                     style: TextStyle(
-                                      fontSize: 13,
-                                      color: Colors.grey,
-                                      fontFamily: "Poppins-Regular",
-                                    )),
-                              ],
+                                      fontSize: 16,
+                                      color: Color(0xFFA7CD3A),
+                                      fontFamily: "Poppins-Bold",
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: "\n${cardModel.company}",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: isActive
+                                          ? Color(0xFF303F46)
+                                          : Colors.red,
+                                      fontFamily: "Poppins-Bold",
+                                    ),
+                                  ),
+                                  TextSpan(
+                                      text:
+                                          "\nInsurance type: Vehicle Insurance",
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.grey,
+                                        fontFamily: "Poppins-Regular",
+                                      )),
+                                ],
+                              ),
+                              textAlign: TextAlign.start,
+                              softWrap: true,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            textAlign: TextAlign.start,
                           ),
                         ],
                       ),
@@ -275,7 +310,12 @@ class _CheckerTabState extends State<CheckerTab> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, PolicyDetails.id);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => PolicyDetails(
+                                cardModel: cardModel, isActive: isActive),
+                          ),
+                        );
                       },
                       child: Text(
                         "REVIEW",

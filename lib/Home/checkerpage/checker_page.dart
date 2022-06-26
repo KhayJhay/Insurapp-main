@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../Widgets/appBarHead.dart';
 import '../../Widgets/checker/cheackerTapCard.dart';
 import '../../Widgets/checker/myDigitalCard.dart';
 
@@ -30,38 +31,8 @@ class _Checker_PageState extends State<Checker_Page>
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      backgroundColor: Color(0xFFEFF3F4),
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 75,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: SizedBox(
-            height: 140,
-            width: 200,
-            child: Image.asset("assets/pngs/logobg1.png")),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            CupertinoIcons.chevron_back,
-            color: Colors.black,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              CupertinoIcons.bell_solid,
-              color: Colors.grey,
-              size: 26,
-            ),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
+    return HeaderAppBar(
+      child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

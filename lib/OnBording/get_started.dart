@@ -17,7 +17,7 @@ class Get_Started extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  height: _height <= 700 ? 685 : _height,
+                  height: _height <= 700 ? 635 : _height * 0.96,
                   width: _width,
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -43,7 +43,7 @@ class Get_Started extends StatelessWidget {
                       children: [
                         Padding(
                           padding:
-                              EdgeInsets.only(top: _height <= 700 ? 20 : 90),
+                              EdgeInsets.only(top: _height <= 700 ? 20 : 70),
                           child: Center(
                             child: Image.asset(
                               "assets/pngs/logobg2.png",
@@ -52,7 +52,7 @@ class Get_Started extends StatelessWidget {
                         ),
                         Padding(
                           padding:
-                              EdgeInsets.only(top: _height <= 700 ? 20 : 80.0),
+                              EdgeInsets.only(top: _height <= 700 ? 20 : 10.0),
                           child: Column(
                             children: [
                               Text(
@@ -71,17 +71,17 @@ class Get_Started extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.only(left: 40, right: 40),
                                 child: Text(
-                                  "Bringing to you real-time insurance solution at your finger tips",
+                                  "Bringing to you real-time \ninsurance solution at your finger \ntips",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 16,
                                     fontFamily: "Poppins-Light",
                                     color: Colors.white,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: _height <= 700 ? 15 : 40,
+                                height: _height <= 700 ? 15 : 80,
                               ),
                               GestureDetector(
                                 onTap: () {
