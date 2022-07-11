@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:insurapp/Home/settings_page.dart';
+import 'package:insurapp/Sub-menu/settings_page.dart';
 
 import '../Models/users.dart';
 
@@ -139,7 +139,7 @@ class _Edit_Profile_PageState extends State<Edit_Profile_Page> {
                     buildTextField("Full Name", "${loggedInUser.username}", false),
                     buildTextField("E-mail", "${loggedInUser.email}", false),
                     buildTextField("Password", "********", true),
-                    buildTextField("Location", "TLV, USA", false),
+
                     SizedBox(
                       height: 35,
                     ),

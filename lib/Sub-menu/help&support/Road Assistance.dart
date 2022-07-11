@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../Home/Navigation_drawer/menu_widget.dart';
-class Help_Support extends StatelessWidget {
-  const Help_Support({Key? key}) : super(key: key);
+class Road_Assistance_Page extends StatelessWidget {
+  const Road_Assistance_Page({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +45,31 @@ class Help_Support extends StatelessWidget {
                 border: Border(bottom: BorderSide(color: Colors.black12,)),
               ),
               child: Center(
-                child: Text("Help & Support",style: TextStyle(
-                  fontSize: 18,
+                child: Text("Road Assistance",style: TextStyle(
+                  fontSize: 16,
                   fontFamily: "Poppins-Medium",
                   color: Color(0xFF303F46),
                 ),),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30.0),
+              padding: const EdgeInsets.only(top: 15.0,left: 30),
+              child: Text("How may we assist you?",style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Poppins-SemiBold',
+                color: Colors.black,
+              ),),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0,left: 30),
+              child: Text("Select the challenge you're facing from the menu below",style: TextStyle(
+                fontSize: 13,
+                fontFamily: 'Poppins-Light',
+                color: Colors.black,
+              ),),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: CustomScrollView(
@@ -63,14 +78,14 @@ class Help_Support extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 28, vertical: 16),
                       sliver: SliverGrid.count(
                         crossAxisCount:2,
-                        mainAxisSpacing: 20,
-                        crossAxisSpacing: 16,
-                        childAspectRatio: 0.7,
+                        mainAxisSpacing: 25,
+                        crossAxisSpacing: 13,
+                        childAspectRatio: 1.1,
                         children: [
                           Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
+                              shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.1),
@@ -89,26 +104,16 @@ class Help_Support extends StatelessWidget {
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(15)
                                       ),
-                                      child: Image.asset('assets/pngs/policy.png')
+                                      child: Image.asset('assets/pngs/h1.png')
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 10.0),
-                                  child: Text("Manage Policy",style: TextStyle(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text("Low Fuel",style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: 'Poppins-SemiBold',
                                     color: Colors.black,
                                   ),),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0,right: 8),
-                                  child: Text("Check and Manage your policies, renew if outdated",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Poppins-Light',
-                                      color: Colors.black,
-                                    ),),
                                 ),
                               ],
                             ),
@@ -116,7 +121,7 @@ class Help_Support extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
+                              shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.1),
@@ -135,24 +140,14 @@ class Help_Support extends StatelessWidget {
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(15)
                                       ),
-                                      child: Image.asset('assets/pngs/customer.png')
+                                      child: Image.asset('assets/pngs/h2.png')
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 10.0),
-                                  child: Text("Chat With Us",style: TextStyle(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text("Flat Tire",style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: 'Poppins-SemiBold',
-                                    color: Colors.black,
-                                  ),),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0,right: 8),
-                                  child: Text("Having a problem, contact or chat with us",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Poppins-Light',
                                     color: Colors.black,
                                   ),),
                                 ),
@@ -162,7 +157,7 @@ class Help_Support extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
+                              shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.1),
@@ -181,26 +176,16 @@ class Help_Support extends StatelessWidget {
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(15)
                                       ),
-                                      child: Image.asset('assets/pngs/road.png')
+                                      child: Image.asset('assets/pngs/h3.png')
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 10.0),
-                                  child: Text("Road Assistance",style: TextStyle(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text("Recovery",style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: 'Poppins-SemiBold',
                                     color: Colors.black,
                                   ),),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0,right: 8),
-                                  child: Text("Do you need us to assist you?,",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Poppins-Light',
-                                      color: Colors.black,
-                                    ),),
                                 ),
                               ],
                             ),
@@ -208,7 +193,7 @@ class Help_Support extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
+                              shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.1),
@@ -227,26 +212,88 @@ class Help_Support extends StatelessWidget {
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(15)
                                       ),
-                                      child: Image.asset('assets/pngs/digital.png')
+                                      child: Image.asset('assets/pngs/h5.png')
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 10.0),
-                                  child: Text("Help With Digi-ID",style: TextStyle(
-                                    fontSize: 15,
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text("Dead Battery",style: TextStyle(
+                                    fontSize: 16,
                                     fontFamily: 'Poppins-SemiBold',
                                     color: Colors.black,
                                   ),),
                                 ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.1),
+                                    blurRadius: 10,
+                                    spreadRadius: 3),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 8.0,right: 8),
-                                  child: Text("Are you struggling to get a Digital ID?",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Poppins-Light',
-                                      color: Colors.black,
-                                    ),),
+                                  padding: const EdgeInsets.only(top: 30.0),
+                                  child: Container(
+                                      height: 65,
+                                      width: 65,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(15)
+                                      ),
+                                      child: Image.asset('assets/pngs/h7.png')
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text("Engine Heat",style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Poppins-SemiBold',
+                                    color: Colors.black,
+                                  ),),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.1),
+                                    blurRadius: 10,
+                                    spreadRadius: 3),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 30.0),
+                                  child: Container(
+                                      height: 65,
+                                      width: 65,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(15)
+                                      ),
+                                      child: Image.asset('assets/pngs/h6.png')
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text("Engine Oil",style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Poppins-SemiBold',
+                                    color: Colors.black,
+                                  ),),
                                 ),
                               ],
                             ),

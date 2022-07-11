@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+
+
+//digital model
 class DigitalIDModel {
   String? userId;
   String? profile;
@@ -16,13 +19,16 @@ class DigitalIDModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['userId'] = this.userId;
-    data['profile'] = this.profile;
-    data['policyCard'] = this.policyCard;
+    data['userId'] = userId;
+    data['profile'] = profile;
+    data['policyCard'] = policyCard;
     return data;
   }
 }
 
+
+
+//insura model
 class InsuraCardModel {
   String? id;
   String? policyNumber;
@@ -50,7 +56,7 @@ class InsuraCardModel {
     this.naic,
   });
 
-  late BuildContext context;
+  BuildContext? context;
 
   InsuraCardModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -61,11 +67,11 @@ class InsuraCardModel {
     model = json['model'];
     company = json['company'];
     vin = json['vin'];
-    effectiveDate = (Theme.of(context).platform == TargetPlatform.iOS
+    effectiveDate = (Theme.of(context!).platform == TargetPlatform.iOS
         ? DateFormat('dd MMM kk:mm').format(json['effective_date'].toDate())
         : DateFormat('dd MMM kk:mm')
             .format(json['effective_date'].toDate())) as DateTime?;
-    expirationDate = (Theme.of(context).platform == TargetPlatform.iOS
+    expirationDate = (Theme.of(context!).platform == TargetPlatform.iOS
         ? DateFormat('dd MMM kk:mm').format(json['expiration_date'].toDate())
         : DateFormat('dd MMM kk:mm')
             .format(json['expiration_date'].toDate())) as DateTime?;

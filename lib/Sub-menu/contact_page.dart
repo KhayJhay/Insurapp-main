@@ -47,8 +47,8 @@ class _Contact_UsState extends State<Contact_Us> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              height: 70,
-                              width: 70,
+                              height: _height*0.08,
+                              width: _width*0.18,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Color(0xFF44A8E0),
@@ -64,7 +64,7 @@ class _Contact_UsState extends State<Contact_Us> {
                                     TextSpan(
                                       text:"ADDRESS",
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         color:Colors.white,
                                         fontFamily: "Poppins-Bold",
                                       ),
@@ -72,7 +72,7 @@ class _Contact_UsState extends State<Contact_Us> {
                                     TextSpan(
                                       text: "\nSan Diego, CA",
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         color: Colors.white,
                                         fontFamily: "Poppins-Light",
                                       ),
@@ -80,7 +80,7 @@ class _Contact_UsState extends State<Contact_Us> {
                                     TextSpan(
                                       text:"\n234 Django ST",
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         color: Colors.white,
                                         fontFamily: "Poppins-Light",
                                       ),
@@ -96,8 +96,8 @@ class _Contact_UsState extends State<Contact_Us> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              height: 70,
-                              width: 70,
+                              height: _height*0.08,
+                              width: _width*0.18,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Color(0xFF44A8E0),
@@ -113,7 +113,7 @@ class _Contact_UsState extends State<Contact_Us> {
                                     TextSpan(
                                       text:"PHONE",
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         color:Colors.white,
                                         fontFamily: "Poppins-Bold",
                                       ),
@@ -121,7 +121,7 @@ class _Contact_UsState extends State<Contact_Us> {
                                     TextSpan(
                                       text: "\n(+75) 352 3236",
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         color: Colors.white,
                                         fontFamily: "Poppins-Light",
                                       ),
@@ -129,7 +129,7 @@ class _Contact_UsState extends State<Contact_Us> {
                                     TextSpan(
                                       text:"\n(+75) 352 2266",
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         color: Colors.white,
                                         fontFamily: "Poppins-Light",
                                       ),
@@ -145,8 +145,8 @@ class _Contact_UsState extends State<Contact_Us> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              height: 70,
-                              width: 70,
+                              height: _height*0.08,
+                              width: _width*0.18,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Color(0xFF44A8E0),
@@ -162,7 +162,7 @@ class _Contact_UsState extends State<Contact_Us> {
                                     TextSpan(
                                       text:"EMAIL",
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         color:Colors.white,
                                         fontFamily: "Poppins-Bold",
                                       ),
@@ -170,7 +170,7 @@ class _Contact_UsState extends State<Contact_Us> {
                                     TextSpan(
                                       text: "\nInsurap@gm...",
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         color: Colors.white,
                                         fontFamily: "Poppins-Light",
                                       ),
@@ -178,7 +178,7 @@ class _Contact_UsState extends State<Contact_Us> {
                                     TextSpan(
                                       text:"\nInsur23@gm...",
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         color: Colors.white,
                                         fontFamily: "Poppins-Light",
                                       ),

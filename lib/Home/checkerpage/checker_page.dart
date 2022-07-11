@@ -31,15 +31,17 @@ class _Checker_PageState extends State<Checker_Page>
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
+    double _width= MediaQuery.of(context).size.width;
     return HeaderAppBar(
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(
-                  top: 20.0, bottom: 12, left: 15, right: 15),
+              padding: const EdgeInsets.symmetric(
+                 vertical: 30, horizontal: 15),
               child: Container(
+                width: _width * 0.53,
                 decoration: BoxDecoration(
                     color: Color(0xFFE3E7E8),
                     borderRadius: BorderRadius.circular(10)),
@@ -70,17 +72,11 @@ class _Checker_PageState extends State<Checker_Page>
                     unselectedLabelColor: Colors.grey,
                     controller: _tabController,
                     tabs: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 50.0, right: 50),
-                        child: Tab(
-                          text: "Checker",
-                        ),
+                      Tab(
+                        text: "Checker",
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 30.0, right: 30),
-                        child: Tab(
-                          text: "My Digital ID",
-                        ),
+                      Tab(
+                        text: "Digital ID",
                       ),
                     ],
                   ),

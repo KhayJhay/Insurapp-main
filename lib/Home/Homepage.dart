@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:insurapp/Home/checkerpage/checker_page.dart';
 import 'package:insurapp/Home/Navigation_drawer/menu_widget.dart';
 import 'package:insurapp/Home/notifications_page.dart';
-import 'package:insurapp/Home/services.dart';
-import 'package:insurapp/Home/settings_page.dart';
+import 'package:insurapp/Sub-menu/services.dart';
+import 'package:insurapp/Sub-menu/settings_page.dart';
 import 'package:insurapp/Sub-menu/about_insurapp.dart';
 import 'package:insurapp/Sub-menu/contact_page.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 import '../Models/users.dart';
-import '../Sub-menu/help&support.dart';
+import '../Sub-menu/help&support/help&support.dart';
+import '../providers/notify_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,23 +26,29 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
+  bool isOpen = false;
 
   //getting users by default
   @override
-  void initState(){
+  void initState() {
     super.initState();
     FirebaseFirestore.instance
         .collection("users")
         .doc(user!.uid)
         .get()
-        .then((value){
+        .then((value) {
       this.loggedInUser = UserModel.fromJson(value.data());
       setState(() {});
     });
   }
+
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    setState(() {
+      isOpen = Provider.of<NotificationProvider>(context).isRead;
+    });
+
     return Scaffold(
       backgroundColor: Color(0xFFEFF3F4),
       appBar: AppBar(
@@ -54,18 +62,34 @@ class _HomePageState extends State<HomePage> {
             child: Image.asset("assets/pngs/logobg1.png")),
         leading: Menuwidget(),
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Notifications_Page()));
-            },
-            icon: Icon(
-              CupertinoIcons.bell_solid,
-              color: Colors.grey,
-              size: 26,
-            ),
+          Stack(
+            children: [
+              Center(
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Notifications_Page()));
+                    NotificationProvider().changeToRead(false);
+                  },
+                  icon: Icon(
+                    CupertinoIcons.bell_solid,
+                    color: Colors.grey,
+                    size: 26,
+                  ),
+                ),
+              ),
+              isOpen
+                  ? Positioned(
+                      right: 9,
+                      top: 20,
+                      child: CircleAvatar(
+                        radius: 6,
+                        backgroundColor: Colors.green,
+                      ))
+                  : SizedBox()
+            ],
           ),
         ],
       ),
@@ -81,8 +105,8 @@ class _HomePageState extends State<HomePage> {
                 color: Color(0xFFE3E7E8),
                 border: Border(
                     bottom: BorderSide(
-                      color: Colors.black12,
-                    )),
+                  color: Colors.black12,
+                )),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -103,14 +127,15 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   fontSize: 16,
                   color: Color(0xFF303F46),
-                  fontFamily: "Poppins-Bold",),
+                  fontFamily: "Poppins-Bold",
+                ),
               ),
             ),
             Column(
               children: [
                 Padding(
                   padding:
-                  const EdgeInsets.only(left: 10.0, right: 10, bottom: 30),
+                      const EdgeInsets.only(left: 10.0, right: 10, bottom: 30),
                   child: Container(
                     height: 175,
                     width: _width * 0.95,
@@ -142,13 +167,14 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Padding(
                               padding:
-                              const EdgeInsets.only(left: 30.0, top: 5),
+                                  const EdgeInsets.only(left: 30.0, top: 5),
                               child: InkWell(
                                 onTap: () {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Checker_Page()));
+                                          builder: (context) =>
+                                              Checker_Page()));
                                 },
                                 child: Container(
                                   height: 42,
@@ -432,7 +458,9 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white,
                             size: 30,
                           ),
-                          onPressed: () {Navigator.pushNamed(context, Notifications_Page.id);},
+                          onPressed: () {
+                            Navigator.pushNamed(context, Notifications_Page.id);
+                          },
                         ),
                       ),
                       SizedBox(

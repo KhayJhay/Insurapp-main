@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:insurapp/Home/checkerpage/checker_page.dart';
+import 'package:insurapp/Sub-menu/settings_page.dart';
+
+import 'help&support/Road Assistance.dart';
 class Services extends StatelessWidget {
   const Services({Key? key}) : super(key: key);
 
@@ -60,6 +64,9 @@ class Services extends StatelessWidget {
                         padding: EdgeInsets.all(8),
                         height: 120,
                         child: ListTile(
+                          onTap: (){
+                            Navigator.pushNamed(context, Settings_Screen.id);
+                          },
                           title: Text("Get Insurance Updates",
                             style: TextStyle(
                               fontSize: 16,
@@ -82,6 +89,9 @@ class Services extends StatelessWidget {
                         padding: EdgeInsets.all(8),
                         height: 120,
                         child: ListTile(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Checker_Page()));
+                          },
                           title: Text("Digital ID Cards",
                             style: TextStyle(
                               fontSize: 16,
@@ -103,6 +113,9 @@ class Services extends StatelessWidget {
                         padding: EdgeInsets.all(8),
                         height: 120,
                         child: ListTile(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Checker_Page()));
+                          },
                           title: Text("Link D-Licence to PL",
                             style: TextStyle(
                               fontSize: 16,
@@ -124,6 +137,9 @@ class Services extends StatelessWidget {
                         padding: EdgeInsets.all(8),
                         height: 120,
                         child: ListTile(
+                          onTap: (){
+                            Navigator.pushNamed(context, Settings_Screen.id);
+                          },
                           title: Text("Virtual Assistance",
                             style: TextStyle(
                               fontSize: 16,
@@ -145,6 +161,9 @@ class Services extends StatelessWidget {
                         padding: EdgeInsets.all(8),
                         height: 120,
                         child: ListTile(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Road_Assistance_Page()));
+                          },
                           title: Text("RoadSide Assistance",
                             style: TextStyle(
                               fontSize: 16,

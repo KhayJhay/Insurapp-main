@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../Home/checkerpage/digitalForm.dart';
@@ -21,6 +24,7 @@ class _CheckerTabState extends State<CheckerTab> {
 
   bool isSearch = false;
   bool isActive = false;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +129,14 @@ class _CheckerTabState extends State<CheckerTab> {
                               });
                             }
                           });
+                          setState(() {
+                            isLoading = true;
+                          });
+                          Timer(Duration(seconds: 2), () {
+                            setState(() {
+                              isLoading = false;
+                            });
+                          });
                         },
                         child: Container(
                           height: 60,
@@ -135,7 +147,7 @@ class _CheckerTabState extends State<CheckerTab> {
                                 topRight: Radius.circular(8),
                                 bottomRight: Radius.circular(8)),
                           ),
-                          child: Icon(
+                          child: isLoading ? SpinKitSpinningLines(color: Colors.white, size: 30,) : Icon(
                             CupertinoIcons.search,
                             color: Colors.white,
                             size: 26,
@@ -247,49 +259,31 @@ class _CheckerTabState extends State<CheckerTab> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          FittedBox(
-                            child: RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: isActive
-                                        ? "Insurance Policy Active"
-                                        : "Insurance Policy Inactive",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Color(0xFFA7CD3A),
-                                      fontFamily: "Poppins-Bold",
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: "\n${cardModel.company}",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: isActive
-                                          ? Color(0xFF303F46)
-                                          : Colors.red,
-                                      fontFamily: "Poppins-Bold",
-                                    ),
-                                  ),
-                                  TextSpan(
-                                      text:
-                                          "\nInsurance type: Vehicle Insurance",
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.grey,
-                                        fontFamily: "Poppins-Regular",
-                                      )),
-                                ],
-                              ),
-                              textAlign: TextAlign.start,
-                              softWrap: true,
+                      child: Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text( isActive
+                                ? "Insurance Policy Active"
+                                : "Insurance Policy Inactive", style: TextStyle(fontSize: 16,
+                              color: isActive
+                                  ? Color(0xFFA7CD3A)
+                                  : Colors.red,
+                              fontFamily: "Poppins-Bold",),),
+                            Text(
+                              "${cardModel.company}",
+                              maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
+                              style: TextStyle(fontSize: 12,
+                              color: isActive
+                                  ? Color(0xFF303F46)
+                                  : Colors.red,
+                              fontFamily: "Poppins-Bold",),),
+                            Text("Insurance type: Vehicle Insurance", style: TextStyle(fontSize: 13,
+                              color: Colors.grey,
+                              fontFamily: "Poppins-Light",),),
+                          ],
+                        ),
                       ),
                     ),
                   ],

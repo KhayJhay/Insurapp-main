@@ -92,8 +92,8 @@ class InsuraData {
     return response;
   }
 
-  static Future addDigitalCard(
-      BuildContext context, String userId, policyId, profile) async {
+  static Future addDigitalCard(BuildContext context, String userId, policyId,
+      profile) async {
     Map<String, dynamic> body = {
       'userId': userId,
       'profile': profile,

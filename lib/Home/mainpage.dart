@@ -5,7 +5,7 @@ import 'package:insurapp/Home/discover_page.dart';
 import 'package:insurapp/Home/profile_page.dart';
 import 'package:insurapp/Home/start_claim.dart';
 
-import '../Sub-menu/help&support.dart';
+import '../Sub-menu/help&support/help&support.dart';
 
 class Mainpage extends StatefulWidget {
   const Mainpage({Key? key}) : super(key: key);

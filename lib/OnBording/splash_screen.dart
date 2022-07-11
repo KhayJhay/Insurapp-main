@@ -41,8 +41,9 @@ class _SplashScreenState extends State<SplashScreen> {
               SizedBox(
                 height: 60,
               ),
-              SpinKitSpinningLines (
+              SpinKitSpinningLines(
                 color: Colors.lightGreen,
+                size: 40,
               ),
             ],
           ),

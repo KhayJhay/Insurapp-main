@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insurapp/Widgets/appBarHead.dart';
 
+import '../Models/noty_model.dart';
+import '../providers/notify_provider.dart';
+
 class StartClaim extends StatefulWidget {
   const StartClaim({Key? key}) : super(key: key);
 
@@ -161,6 +164,13 @@ class _StartClaimState extends State<StartClaim> {
                           desc: 'Your claim has been submitted',
                           btnOkOnPress: () {},
                         )..show();
+                        NotificationProvider().changeToRead(true);
+                        NotificationProvider().addNotify(NotificationModel(
+                          sender: 'Claim Sent',
+                          content:
+                              'Your claim has been submitted, We will attend to you shortly. Your location is ${locaText.text}',
+                          createdOn: DateTime.now(),
+                        ));
                         _currentStep = 0;
                       } else {
                         if (_currentStep == 1) {
