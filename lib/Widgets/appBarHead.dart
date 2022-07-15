@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../Home/notifications_page.dart';
 import '../providers/notify_provider.dart';
+import '../providers/theme_provider.dart';
 
 class HeaderAppBar extends StatefulWidget {
   final Widget child;
@@ -18,12 +19,14 @@ class _HeaderAppBarState extends State<HeaderAppBar> {
   @override
   Widget build(BuildContext context) {
     isOpen = Provider.of<NotificationProvider>(context).isRead;
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Colors.black;
     return Scaffold(
-      backgroundColor: Color(0xFFEFF3F4),
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: appbar_color,
         toolbarHeight: 75,
-        backgroundColor: Colors.white,
         centerTitle: true,
         title: SizedBox(
             height: 140,

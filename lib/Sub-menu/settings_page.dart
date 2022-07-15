@@ -3,9 +3,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 
 import '../Authentication/userCredential.dart';
 import '../Authentication/login&register_page.dart';
+import '../providers/theme_provider.dart';
 
 class Settings_Screen extends StatelessWidget {
   static String id = 'settings_page';
@@ -15,13 +17,16 @@ class Settings_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
     return Scaffold(
-      backgroundColor: Color(0xFFEFF3F4),
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 75,
-        backgroundColor: Colors.white,
         centerTitle: true,
+        backgroundColor: appbar_color,
         title: SizedBox(
             height: 140,
             width: 200,
@@ -32,7 +37,6 @@ class Settings_Screen extends StatelessWidget {
           },
           icon: Icon(
             CupertinoIcons.chevron_back,
-            color: Colors.grey,
           ),
         ),
         actions: [
@@ -53,7 +57,7 @@ class Settings_Screen extends StatelessWidget {
               height: 60,
               width: _width,
               decoration: BoxDecoration(
-                color: Color(0xFFE3E7E8),
+                color: welcome_color,
                 border: Border(
                     bottom: BorderSide(
                   color: Colors.black12,
@@ -65,7 +69,7 @@ class Settings_Screen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontFamily: "Poppins-Medium",
-                    color: Color(0xFF303F46),
+                    color: bodytext_color,
                   ),
                 ),
               ),
@@ -154,7 +158,7 @@ class Settings_Screen extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 16,
                                 letterSpacing: 2.2,
-                                color: Colors.black)),
+                               )),
                       ),
                     )
                   ],

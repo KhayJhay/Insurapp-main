@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurapp/Sub-menu/settings_page.dart';
+import 'package:provider/provider.dart';
 
 import '../Models/users.dart';
+import '../providers/theme_provider.dart';
 
 class Edit_Profile_Page extends StatefulWidget {
   static String id = 'edit_profile';
@@ -33,12 +35,15 @@ class _Edit_Profile_PageState extends State<Edit_Profile_Page> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
     return Scaffold(
-      backgroundColor: Color(0xFFEFF3F4),
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: appbar_color,
         toolbarHeight: 75,
-        backgroundColor: Colors.white,
         centerTitle: true,
         title: SizedBox(
             height: 140,
@@ -64,7 +69,7 @@ class _Edit_Profile_PageState extends State<Edit_Profile_Page> {
               height: 60,
               width: _width,
               decoration: BoxDecoration(
-                color: Color(0xFFE3E7E8),
+                color: welcome_color,
                 border: Border(
                     bottom: BorderSide(
                       color: Colors.black12,
@@ -76,7 +81,6 @@ class _Edit_Profile_PageState extends State<Edit_Profile_Page> {
                   style: TextStyle(
                     fontSize: 16,
                     fontFamily: "Poppins-Medium",
-                    color: Color(0xFF303F46),
                   ),
                 ),
               ),
@@ -155,7 +159,7 @@ class _Edit_Profile_PageState extends State<Edit_Profile_Page> {
                               style: TextStyle(
                                   fontSize: 14,
                                   letterSpacing: 2.2,
-                                  color: Colors.black)),
+                              )),
                         ),
                         RaisedButton(
                           onPressed: () {},
@@ -169,7 +173,7 @@ class _Edit_Profile_PageState extends State<Edit_Profile_Page> {
                             style: TextStyle(
                                 fontSize: 14,
                                 letterSpacing: 2.2,
-                                color: Colors.white),
+                                ),
                           ),
                         )
                       ],

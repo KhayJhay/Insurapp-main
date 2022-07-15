@@ -1,24 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurapp/Home/checkerpage/checker_page.dart';
+import 'package:insurapp/Home/mainpage.dart';
 import 'package:insurapp/Sub-menu/about_insurapp.dart';
 import 'package:insurapp/Sub-menu/chat_screen/customer_serv_chat.dart';
 import 'package:insurapp/Sub-menu/help&support/Road%20Assistance.dart';
+import 'package:provider/provider.dart';
 
 import '../../Home/Navigation_drawer/menu_widget.dart';
+import '../../providers/theme_provider.dart';
 class Help_Support extends StatelessWidget {
   const Help_Support({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
+    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Colors.white;
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
+    final shadowcolor = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Colors.black;
     double _height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xFFEFF3F4),
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: appbar_color,
         toolbarHeight: 75,
-        backgroundColor: Colors.white,
         centerTitle: true,
         title: SizedBox(
             height: 140,
@@ -26,11 +33,11 @@ class Help_Support extends StatelessWidget {
             child: Image.asset("assets/pngs/logobg1.png")),
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Mainpage()));
           },
           icon: Icon(
             CupertinoIcons.chevron_back,
-            color: Colors.black,
+            color: Colors.grey,
           ),
         ),
         actions: [
@@ -46,14 +53,14 @@ class Help_Support extends StatelessWidget {
               height: 60,
               width: _width,
               decoration: BoxDecoration(
-                color: Color(0xFFE3E7E8),
+                color: welcome_color,
                 border: Border(bottom: BorderSide(color: Colors.black12,)),
               ),
               child: Center(
                 child: Text("Help & Support",style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 14,
                   fontFamily: "Poppins-Medium",
-                  color: Color(0xFF303F46),
+                  color: bodytext_color,
                 ),),
               ),
             ),
@@ -74,7 +81,7 @@ class Help_Support extends StatelessWidget {
                           InkWell(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: color,
                                 borderRadius: BorderRadius.circular(20),
                                 boxShadow: [
                                   BoxShadow(
@@ -91,7 +98,7 @@ class Help_Support extends StatelessWidget {
                                         height: 65,
                                         width: 65,
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: color,
                                             borderRadius: BorderRadius.circular(15)
                                         ),
                                         child: Image.asset('assets/pngs/policy.png')
@@ -100,9 +107,9 @@ class Help_Support extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10.0),
                                     child: Text("Manage Policy",style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       fontFamily: 'Poppins-SemiBold',
-                                      color: Colors.black,
+                                      color: bodytext_color,
                                     ),),
                                   ),
                                   Padding(
@@ -112,7 +119,6 @@ class Help_Support extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontFamily: 'Poppins-Light',
-                                        color: Colors.black,
                                       ),),
                                   ),
                                 ],
@@ -128,7 +134,7 @@ class Help_Support extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: color,
                                 borderRadius: BorderRadius.circular(20),
                                 boxShadow: [
                                   BoxShadow(
@@ -145,7 +151,7 @@ class Help_Support extends StatelessWidget {
                                         height: 65,
                                         width: 65,
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: color,
                                             borderRadius: BorderRadius.circular(15)
                                         ),
                                         child: Image.asset('assets/pngs/customer.png')
@@ -154,9 +160,8 @@ class Help_Support extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10.0),
                                     child: Text("Chat With Us",style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       fontFamily: 'Poppins-SemiBold',
-                                      color: Colors.black,
                                     ),),
                                   ),
                                   Padding(
@@ -166,7 +171,6 @@ class Help_Support extends StatelessWidget {
                                       style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: 'Poppins-Light',
-                                      color: Colors.black,
                                     ),),
                                   ),
                                 ],
@@ -179,7 +183,7 @@ class Help_Support extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: color,
                                 borderRadius: BorderRadius.circular(20),
                                 boxShadow: [
                                   BoxShadow(
@@ -196,7 +200,7 @@ class Help_Support extends StatelessWidget {
                                         height: 65,
                                         width: 65,
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: color,
                                             borderRadius: BorderRadius.circular(15)
                                         ),
                                         child: Image.asset('assets/pngs/road.png')
@@ -205,19 +209,17 @@ class Help_Support extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10.0),
                                     child: Text("Road Assistance",style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       fontFamily: 'Poppins-SemiBold',
-                                      color: Colors.black,
                                     ),),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 8.0,right: 8),
-                                    child: Text("Do you need us to assist you?,",
+                                    child: Text("Do you need us to assist you?",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontFamily: 'Poppins-Light',
-                                        color: Colors.black,
                                       ),),
                                   ),
                                 ],
@@ -230,7 +232,7 @@ class Help_Support extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: color,
                                 borderRadius: BorderRadius.circular(20),
                                 boxShadow: [
                                   BoxShadow(
@@ -247,7 +249,7 @@ class Help_Support extends StatelessWidget {
                                         height: 65,
                                         width: 65,
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: color,
                                             borderRadius: BorderRadius.circular(15)
                                         ),
                                         child: Image.asset('assets/pngs/logobg1c.png')
@@ -255,10 +257,11 @@ class Help_Support extends StatelessWidget {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10.0),
-                                    child: Text("More about Insurapp",style: TextStyle(
+                                    child: Text("More about Insurapp",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'Poppins-SemiBold',
-                                      color: Colors.black,
                                     ),),
                                   ),
                                   Padding(
@@ -268,7 +271,6 @@ class Help_Support extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontFamily: 'Poppins-Light',
-                                        color: Colors.black,
                                       ),),
                                   ),
                                 ],

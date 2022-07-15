@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurapp/Models/insura_.model.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/theme_provider.dart';
 
 class PolicyDetails extends StatefulWidget {
   static String id = 'policydetails';
@@ -20,12 +23,15 @@ class _PolicyDetailsState extends State<PolicyDetails> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
     return Scaffold(
-      backgroundColor: Color(0xFFEFF3F4),
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 75,
-        backgroundColor: Colors.white,
+        backgroundColor: appbar_color,
         centerTitle: true,
         title: SizedBox(
             height: 140,
@@ -60,7 +66,7 @@ class _PolicyDetailsState extends State<PolicyDetails> {
               height: 60,
               width: _width,
               decoration: BoxDecoration(
-                color: Color(0xFFE3E7E8),
+                color: welcome_color,
                 border: Border(
                     bottom: BorderSide(
                   color: Colors.black12,
@@ -72,7 +78,6 @@ class _PolicyDetailsState extends State<PolicyDetails> {
                   style: TextStyle(
                     fontSize: 16,
                     fontFamily: "Poppins-Medium",
-                    color: Color(0xFF303F46),
                   ),
                 ),
               ),
@@ -102,7 +107,6 @@ buildPolicyDetails(
                   "Insurance Company",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-SemiBold",
                   ),
                 ),
@@ -110,7 +114,6 @@ buildPolicyDetails(
                   cardModel.company.toString(),
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-Light",
                   ),
                 ),
@@ -125,7 +128,6 @@ buildPolicyDetails(
                   "Insurance Policy Number",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-SemiBold",
                   ),
                 ),
@@ -133,7 +135,6 @@ buildPolicyDetails(
                   cardModel.policyNumber.toString(),
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-Light",
                   ),
                 ),
@@ -148,7 +149,6 @@ buildPolicyDetails(
                   "Car Brand / Make",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-SemiBold",
                   ),
                 ),
@@ -156,7 +156,6 @@ buildPolicyDetails(
                   cardModel.maker.toString(),
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-Light",
                   ),
                 ),
@@ -171,7 +170,6 @@ buildPolicyDetails(
                   "Car Model",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-SemiBold",
                   ),
                 ),
@@ -179,7 +177,6 @@ buildPolicyDetails(
                   cardModel.model.toString(),
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-Light",
                   ),
                 ),
@@ -194,7 +191,6 @@ buildPolicyDetails(
                   "Insured",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-SemiBold",
                   ),
                 ),
@@ -202,7 +198,6 @@ buildPolicyDetails(
                   cardModel.insured.toString(),
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-Light",
                   ),
                 ),
@@ -217,7 +212,6 @@ buildPolicyDetails(
                   "naic",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-SemiBold",
                   ),
                 ),
@@ -225,7 +219,6 @@ buildPolicyDetails(
                   cardModel.naic.toString(),
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-Light",
                   ),
                 ),
@@ -240,7 +233,6 @@ buildPolicyDetails(
                   "Effective Date",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-SemiBold",
                   ),
                 ),
@@ -248,7 +240,6 @@ buildPolicyDetails(
                   cardModel.effectiveDate.toString(),
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-Light",
                   ),
                 ),
@@ -263,7 +254,6 @@ buildPolicyDetails(
                   "Expiration Date",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-SemiBold",
                   ),
                 ),
@@ -271,7 +261,6 @@ buildPolicyDetails(
                   cardModel.expirationDate.toString(),
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-Light",
                   ),
                 ),
@@ -286,7 +275,6 @@ buildPolicyDetails(
                 "Insurance Status",
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color(0xFF303F46),
                   fontFamily: "Poppins-SemiBold",
                 ),
               ),
@@ -320,7 +308,6 @@ buildPolicyDetails(
                   "Vehicle ID",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-SemiBold",
                   ),
                 ),
@@ -328,7 +315,6 @@ buildPolicyDetails(
                   cardModel.vin.toString(),
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-Light",
                   ),
                 ),
@@ -343,7 +329,6 @@ buildPolicyDetails(
                   "Car Year",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-SemiBold",
                   ),
                 ),
@@ -351,7 +336,6 @@ buildPolicyDetails(
                   cardModel.year.toString(),
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
                     fontFamily: "Poppins-Light",
                   ),
                 ),

@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:insurapp/Home/edit_profile_page.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import '../Models/users.dart';
+import '../providers/theme_provider.dart';
 import 'checkerpage/checker_page.dart';
 class ProfilPage extends StatefulWidget {
   const ProfilPage({Key? key}) : super(key: key);
@@ -32,12 +34,15 @@ class _ProfilPageState extends State<ProfilPage> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Colors.black;
     return Scaffold(
-      backgroundColor: Color(0xFFEFF3F4),
       appBar: AppBar(
+        backgroundColor: appbar_color,
         elevation: 0,
         toolbarHeight: 75,
-        backgroundColor: Colors.white,
         centerTitle: true,
         title: SizedBox(
             height: 140,
@@ -237,7 +242,6 @@ class _ProfilPageState extends State<ProfilPage> {
                     child: Text("INSURANCE",
                       style: TextStyle(
                         fontSize: 14,
-                        color: Color(0xFF303F46),
                         fontFamily: "Poppins-Bold",
                       ),
                     ),
@@ -249,7 +253,7 @@ class _ProfilPageState extends State<ProfilPage> {
                       height: 175,
                       width: _width * 0.95,
                       decoration: BoxDecoration(
-                        color: Color(0xFFE8F3F3),
+                        color: color,
                         borderRadius: BorderRadius.circular(25),
                         boxShadow: [
                           BoxShadow(
@@ -269,7 +273,6 @@ class _ProfilPageState extends State<ProfilPage> {
                                 child: Text(
                                   "Is Your Insurance\n Policy Valid?",
                                   style: TextStyle(
-                                      color: Color(0xFF303F46),
                                       fontFamily: 'Poppins-SemiBold',
                                       fontSize: 18),
                                 ),

@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurapp/Home/checkerpage/checker_page.dart';
 import 'package:insurapp/Sub-menu/settings_page.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/theme_provider.dart';
 import 'help&support/Road Assistance.dart';
 class Services extends StatelessWidget {
   const Services({Key? key}) : super(key: key);
@@ -11,12 +13,15 @@ class Services extends StatelessWidget {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
     return Scaffold(
-      backgroundColor: Color(0xFFEFF3F4),
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: appbar_color,
         toolbarHeight: 75,
-        backgroundColor: Colors.white,
         centerTitle: true,
         title: SizedBox(
             height: 140,
@@ -28,7 +33,6 @@ class Services extends StatelessWidget {
           },
           icon: Icon(
             CupertinoIcons.chevron_back,
-            color: Colors.black,
           ),
         ),
         actions: [
@@ -44,14 +48,13 @@ class Services extends StatelessWidget {
               height: 60,
               width: _width,
               decoration: BoxDecoration(
-                color: Color(0xFFE3E7E8),
+                color: welcome_color,
                 border: Border(bottom: BorderSide(color: Colors.black12,)),
               ),
               child: Center(
                 child: Text("Services",style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontFamily: "Poppins-Medium",
-                  color: Color(0xFF303F46),
                 ),),
               ),
             ),
@@ -70,13 +73,11 @@ class Services extends StatelessWidget {
                           title: Text("Get Insurance Updates",
                             style: TextStyle(
                               fontSize: 16,
-                              color: Color(0xFF303F46),
                               fontFamily: "Poppins-SemiBold",
                             ),),
                           subtitle:  Text("Stay updated with all information relating to insurance as well as keeping your "
                               "insurance status updated. ", style: TextStyle(
                             fontSize: 12,
-                            color: Color(0xFF303F46),
                             fontFamily: "Poppins-Light",
                           ),),
                           leading:  Image.asset("assets/pngs/update.png"),
@@ -95,12 +96,10 @@ class Services extends StatelessWidget {
                           title: Text("Digital ID Cards",
                             style: TextStyle(
                               fontSize: 16,
-                              color: Color(0xFF303F46),
                               fontFamily: "Poppins-SemiBold",
                             ),),
                           subtitle:  Text("View, request and print your ID cards when you need them right from the convenience of your phone.  ", style: TextStyle(
                             fontSize: 12,
-                            color: Color(0xFF303F46),
                             fontFamily: "Poppins-Light",
                           ),),
                           leading:  Image.asset("assets/pngs/digital.png"),
@@ -119,12 +118,10 @@ class Services extends StatelessWidget {
                           title: Text("Link D-Licence to PL",
                             style: TextStyle(
                               fontSize: 16,
-                              color: Color(0xFF303F46),
                               fontFamily: "Poppins-SemiBold",
                             ),),
                           subtitle:  Text("With Insurapp you can link your drivers licence number to your Insurance Policy Number ", style: TextStyle(
                             fontSize: 12,
-                            color: Color(0xFF303F46),
                             fontFamily: "Poppins-Light",
                           ),),
                           leading:  Image.asset("assets/pngs/dl.png"),
@@ -143,12 +140,10 @@ class Services extends StatelessWidget {
                           title: Text("Virtual Assistance",
                             style: TextStyle(
                               fontSize: 16,
-                              color: Color(0xFF303F46),
                               fontFamily: "Poppins-SemiBold",
                             ),),
                           subtitle:  Text("With the virtual assistant's 24/7 availability, you can be assured of getting the needed assistance anytime.  ", style: TextStyle(
                             fontSize: 12,
-                            color: Color(0xFF303F46),
                             fontFamily: "Poppins-Light",
                           ),),
                           leading:  Image.asset("assets/pngs/va.png"),
@@ -167,12 +162,10 @@ class Services extends StatelessWidget {
                           title: Text("RoadSide Assistance",
                             style: TextStyle(
                               fontSize: 16,
-                              color: Color(0xFF303F46),
                               fontFamily: "Poppins-SemiBold",
                             ),),
                           subtitle:  Text("Apart from insurance services, our app offers you all the road assistance you need to keep going on a trip.  ", style: TextStyle(
                             fontSize: 12,
-                            color: Color(0xFF303F46),
                             fontFamily: "Poppins-Light",
                           ),),
                           leading:  Image.asset("assets/pngs/tow.png"),

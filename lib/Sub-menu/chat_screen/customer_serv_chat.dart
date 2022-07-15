@@ -6,7 +6,9 @@ import 'package:grouped_list/grouped_list.dart';
 import 'package:grouped_list/sliver_grouped_list.dart';
 import 'package:insurapp/Sub-menu/chat_screen/components/app_constatns.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/theme_provider.dart';
 import 'components/comming_message_bubble.dart';
 import 'components/dummy_data.dart';
 import 'components/message_buble.dart';
@@ -34,6 +36,9 @@ class _Chats_PageState extends State<Chats_Page> {
   TextEditingController _textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
     return Scaffold(
       appBar: _appBar(context),
       body: Padding(
@@ -58,57 +63,65 @@ class _Chats_PageState extends State<Chats_Page> {
               ),
             ),
             SizedBox(
-              height: 50,
+              height: 80,
               width: double.infinity,
               child: Padding(
                 padding: const EdgeInsets.only(top: 5, bottom: 3),
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.mic,
-                        color: AppColors.grey,
-                        size: 22,
-                      ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Type message',
-                          hintStyle: const TextStyle(
-                            color: Colors.black38,
-                            fontSize: 15,
-                          ),
-                          contentPadding:
-                          const EdgeInsets.fromLTRB(10, 10, 5, 5),
-                          fillColor: AppColors.darkWhite,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide.none,
-                          ),
+                child: Container(
+                  height: 80,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: appbar_color,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.mic,
+                          color: AppColors.grey,
+                          size: 22,
                         ),
-                        maxLines: 1,
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.add,
-                        color: AppColors.rose,
-                        size: 22,
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Type message',
+                            hintStyle: const TextStyle(
+                              color: Colors.black38,
+                              fontSize: 15,
+                            ),
+                            contentPadding:
+                            const EdgeInsets.fromLTRB(10, 10, 5, 5),
+                            fillColor: AppColors.darkWhite,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                          maxLines: 1,
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.send_rounded,
-                        color: AppColors.rose,
-                        size: 22,
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.add,
+                          color: AppColors.rose,
+                          size: 22,
+                        ),
                       ),
-                    ),
-                  ],
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.send_rounded,
+                          color: AppColors.rose,
+                          size: 22,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -118,9 +131,12 @@ class _Chats_PageState extends State<Chats_Page> {
     );
   }
   AppBar _appBar(BuildContext context) {
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.white,
+      backgroundColor: appbar_color,
       elevation: 0,
       titleSpacing: 0,
       title: Row(
@@ -145,7 +161,8 @@ class _Chats_PageState extends State<Chats_Page> {
               Text(
                 'Insurapp Team',
                 style: TextStyle(
-                    color: Colors.black,
+                    fontSize: 14,
+                    color: Colors.grey,
                     fontFamily: "Poppins-SemiBold",
                     height: 1.3),
               ),

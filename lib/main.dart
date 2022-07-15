@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insurapp/providers/notify_provider.dart';
+import 'package:insurapp/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
@@ -25,10 +26,13 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
               create: (BuildContext context) => NotificationProvider()),
+          ChangeNotifierProvider(
+              create: (context) => ThemeProvider()),
         ],
         child: FutureBuilder(
             future: Auth.initializeFirebase(),
             builder: (context, snapshot) {
+              final themeProvider = Provider.of<ThemeProvider>(context);
               if (snapshot.hasError) {
                 return Text('Something went wrong');
               }
@@ -44,7 +48,9 @@ class MyApp extends StatelessWidget {
                       ]),
                   title: 'Insurapp',
                   debugShowCheckedModeBanner: false,
-                  theme: ThemeData(),
+                  themeMode: themeProvider.themeMode,
+                  theme: MyThemes.lightTheme,
+                  darkTheme: MyThemes.darkTheme,
                   home: FirebaseAuth.instance.currentUser == null
                       ? SplashScreen()
                       : Mainpage(),

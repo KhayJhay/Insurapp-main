@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
+import '../../../providers/theme_provider.dart';
 import 'app_constatns.dart';
 import 'message_model.dart';
 
@@ -13,6 +15,9 @@ class CommingMessageBuble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3),
       child: Align(
@@ -27,7 +32,7 @@ class CommingMessageBuble extends StatelessWidget {
                 constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width * .7,
                 ),
-                color: AppColors.darkWhite,
+                color: appbar_color,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

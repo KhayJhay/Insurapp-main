@@ -5,9 +5,11 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insurapp/Widgets/appBarHead.dart';
+import 'package:provider/provider.dart';
 
 import '../Models/noty_model.dart';
 import '../providers/notify_provider.dart';
+import '../providers/theme_provider.dart';
 
 class StartClaim extends StatefulWidget {
   const StartClaim({Key? key}) : super(key: key);
@@ -55,6 +57,9 @@ class _StartClaimState extends State<StartClaim> {
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Colors.black;
     return HeaderAppBar(
       child: SingleChildScrollView(
         child: Column(
@@ -63,7 +68,7 @@ class _StartClaimState extends State<StartClaim> {
               height: 60,
               width: _width,
               decoration: BoxDecoration(
-                color: Color(0xFFE3E7E8),
+                color: welcome_color,
                 border: Border(
                     bottom: BorderSide(
                   color: Colors.black12,
@@ -73,9 +78,8 @@ class _StartClaimState extends State<StartClaim> {
                 child: Text(
                   "Start Claim",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 16,
                     fontFamily: "Poppins-Bold",
-                    color: Color(0xFF303F46),
                   ),
                 ),
               ),

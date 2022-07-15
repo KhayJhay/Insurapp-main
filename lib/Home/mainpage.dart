@@ -33,7 +33,6 @@ class _MainpageState extends State<Mainpage> {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => StartClaim()));
         },
-        backgroundColor: Color(0xFF44A8E0),
         tooltip: 'Publish?',
         child: Icon(
           Icons.add,

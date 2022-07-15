@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/theme_provider.dart';
 class Contact_Us extends StatefulWidget {
   const Contact_Us({Key? key}) : super(key: key);
 
@@ -8,10 +11,12 @@ class Contact_Us extends StatefulWidget {
 }
 
 class _Contact_UsState extends State<Contact_Us> {
+  bool showPassword = false;
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade600 : Color(0xFF44A8E0);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -22,7 +27,6 @@ class _Contact_UsState extends State<Contact_Us> {
           },
           icon: Icon(
             CupertinoIcons.chevron_back,
-            color: Colors.white,
           ),
         ),
       ),
@@ -35,7 +39,7 @@ class _Contact_UsState extends State<Contact_Us> {
                 Container(
                   height: _height*0.35,
                   decoration: BoxDecoration(
-                    color: Color(0xFF44A8E0),
+                    color: color,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(top: 80.0, left: 10, bottom: 15,right: 10),
@@ -200,209 +204,42 @@ class _Contact_UsState extends State<Contact_Us> {
             padding: const EdgeInsets.only(top: 350, left: 15, right: 15),
             child: SingleChildScrollView(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
                     child: Text("Message Us",style: TextStyle(
                         fontSize: 24,
-                        color: Color(0xFF303F46),
                         fontFamily: "Poppins-Bold"
                     ),),
                   ),
-                 Padding(
-                   padding: const EdgeInsets.all(8.0),
-                   child: Row(
-                     mainAxisAlignment: MainAxisAlignment.end,
-                     children: [
-                       Text("Name",style: TextStyle(
-                           fontSize: 18,
-                           color: Color(0xFF303F46),
-                           fontFamily: "Poppins-Medium"
-                       ),),
-                       Container(
-                         margin: EdgeInsets.symmetric(horizontal: 20),
-                         height: 45,
-                         width: 250,
-                         decoration: BoxDecoration(
-                           color: Colors.white,
-                           boxShadow: [
-                             BoxShadow(
-                                 color: Colors.black.withOpacity(0.1),
-                                 blurRadius: 6,
-                                 spreadRadius: 1),
-                           ],
-                           borderRadius: BorderRadius.circular(20),
-                         ),
-                         child: Row(
-                           children: [
-                             SizedBox(
-                               width: 15,
-                             ),
-                             Expanded(
-                               child: TextField(
-                                 onChanged: (value) {},
-                                 decoration: InputDecoration(
-                                   hintText: "Enter Your Name",
-                                   hintStyle: TextStyle(
-                                     color: Colors.black.withOpacity(0.5),
-                                     fontSize: 16,
-                                   ),
-                                   enabledBorder: InputBorder.none,
-                                   focusedBorder: InputBorder.none,
-                                 ),
-                               ),
-                             ),
-                           ],
-                         ),
-                       ),
-                     ],
-                   ),
-                 ),
+                SizedBox(
+                height: 35,
+              ),
+                  buildTextField("Full Name", " ", false),
+                  buildTextField("E-mail", " ", false),
+                  buildTextField("Tel", " ", false),
+                  buildTextField("Address", " ", false),
+                  buildTextField("Message", " ", false),
                   Padding(
-                    padding: const EdgeInsets.only(left:8.0,top: 25),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Email",style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF303F46),
-                            fontFamily: "Poppins-Medium"
-                        ),),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 20),
-                          height: 45,
-                          width: 250,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 6,
-                                  spreadRadius: 1),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Expanded(
-                                child: TextField(
-                                  onChanged: (value) {},
-                                  decoration: InputDecoration(
-                                    hintText: "Enter email",
-                                    hintStyle: TextStyle(
-                                      color: Colors.black.withOpacity(0.5),
-                                      fontSize: 16,
-                                    ),
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left:8.0,top: 25),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Address",style: TextStyle(
+                    padding: const EdgeInsets.only(top: 10.0,bottom: 20,),
+                    child: Container(
+                      width: 200,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          color: Color(0xFFEFF3F4),
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(color: Colors.grey,width: 0.5)
+                      ),
+                      child: Center(
+                        child: Text("SEND",
+                          style: TextStyle(
                             fontSize: 16,
-                            color: Color(0xFF303F46),
-                            fontFamily: "Poppins-Medium"
-                        ),),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 20),
-                          height: 45,
-                          width: 250,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 6,
-                                  spreadRadius: 1),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Expanded(
-                                child: TextField(
-                                  onChanged: (value) {},
-                                  decoration: InputDecoration(
-                                    hintText: "Enter your address",
-                                    hintStyle: TextStyle(
-                                      color: Colors.black.withOpacity(0.5),
-                                      fontSize: 16,
-                                    ),
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                  ),
-                                ),
-                              ),
-                            ],
+                            color: Colors.grey,
+                            letterSpacing: 2,
+                            fontFamily: "Poppins-SemiBold",
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left:8.0,top: 25),
-                    child: Row(
-                      children: [
-                        Text("Message",style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF303F46),
-                            fontFamily: "Poppins-Medium"
-                        ),),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 20),
-                          height: 100,
-                          width: 230,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 6,
-                                  spreadRadius: 1),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Expanded(
-                                child: TextField(
-                                  onChanged: (value) {},
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      color: Colors.black.withOpacity(0.5),
-                                      fontSize: 16,
-                                    ),
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ],
@@ -410,6 +247,39 @@ class _Contact_UsState extends State<Contact_Us> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget buildTextField(
+      String labelText, String placeholder, bool isPasswordTextField) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 35.0),
+      child: TextField(
+        obscureText: isPasswordTextField ? showPassword : false,
+        decoration: InputDecoration(
+            suffixIcon: isPasswordTextField
+                ? IconButton(
+              onPressed: () {
+                setState(() {
+                  showPassword = !showPassword;
+                });
+              },
+              icon: Icon(
+                Icons.remove_red_eye,
+                color: Colors.grey,
+              ),
+            )
+                : null,
+            contentPadding: EdgeInsets.only(bottom: 3),
+            labelText: labelText,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            hintText: placeholder,
+            hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            )),
       ),
     );
   }

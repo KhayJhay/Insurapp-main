@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:insurapp/Home/change_theme_button_widget.dart';
 import 'package:insurapp/Home/checkerpage/checker_page.dart';
 import 'package:insurapp/Home/Navigation_drawer/menu_widget.dart';
 import 'package:insurapp/Home/notifications_page.dart';
@@ -15,6 +16,7 @@ import 'package:provider/provider.dart';
 import '../Models/users.dart';
 import '../Sub-menu/help&support/help&support.dart';
 import '../providers/notify_provider.dart';
+import '../providers/theme_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -45,22 +47,26 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
+    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
+    final shadowcolor = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Colors.black;
     setState(() {
       isOpen = Provider.of<NotificationProvider>(context).isRead;
     });
 
     return Scaffold(
-      backgroundColor: Color(0xFFEFF3F4),
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: appbar_color,
         toolbarHeight: 75,
-        backgroundColor: Colors.white,
         centerTitle: true,
         title: SizedBox(
             height: 140,
             width: 200,
             child: Image.asset("assets/pngs/logobg1.png")),
-        leading: Menuwidget(),
+        leading: ChangeThemeButtonWidget(),
         actions: [
           Stack(
             children: [
@@ -102,7 +108,7 @@ class _HomePageState extends State<HomePage> {
               height: 60,
               width: _width,
               decoration: BoxDecoration(
-                color: Color(0xFFE3E7E8),
+                color: welcome_color,
                 border: Border(
                     bottom: BorderSide(
                   color: Colors.black12,
@@ -113,9 +119,9 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   "Welcome ${loggedInUser.username}!",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                     fontFamily: "Poppins-Medium",
-                    color: Color(0xFF303F46),
+                    color: bodytext_color,
                   ),
                 ),
               ),
@@ -126,8 +132,8 @@ class _HomePageState extends State<HomePage> {
                 "Check Policy Validity",
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color(0xFF303F46),
                   fontFamily: "Poppins-Bold",
+                  color: bodytext_color,
                 ),
               ),
             ),
@@ -140,11 +146,11 @@ class _HomePageState extends State<HomePage> {
                     height: 175,
                     width: _width * 0.95,
                     decoration: BoxDecoration(
-                      color: Color(0xFFE8F3F3),
+                      color: color,
                       borderRadius: BorderRadius.circular(25),
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: shadowcolor.withOpacity(0.09),
                             blurRadius: 10,
                             spreadRadius: 3),
                       ],
@@ -160,9 +166,9 @@ class _HomePageState extends State<HomePage> {
                               child: Text(
                                 "Is Your Insurance\n Policy Valid?",
                                 style: TextStyle(
-                                    color: Color(0xFF303F46),
                                     fontFamily: 'Poppins-SemiBold',
-                                    fontSize: 18),
+                                    color: bodytext_color,
+                                    fontSize: 16),
                               ),
                             ),
                             Padding(
@@ -221,8 +227,9 @@ class _HomePageState extends State<HomePage> {
                 "Sub Menu",
                 style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF303F46),
-                    fontFamily: "Poppins-Bold"),
+                    fontFamily: "Poppins-Bold",
+                  color: bodytext_color,
+                ),
               ),
             ),
             GridView.count(
@@ -276,7 +283,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: 'Popping-Light',
-                          color: Color(0xFF303F46),
+                          color: bodytext_color
                         ),
                       ),
                     ],
@@ -327,7 +334,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: 'Popping-Light',
-                          color: Color(0xFF303F46),
+                          color: bodytext_color,
                         ),
                       ),
                     ],
@@ -382,7 +389,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: 'Popping-Light',
-                          color: Color(0xFF303F46),
+                          color: bodytext_color,
                         ),
                       ),
                     ],
@@ -430,7 +437,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: 'Popping-Light',
-                          color: Color(0xFF303F46),
+                          color: bodytext_color,
                         ),
                       ),
                     ],
@@ -471,7 +478,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: 'Popping-Light',
-                          color: Color(0xFF303F46),
+                          color: bodytext_color,
                         ),
                       ),
                     ],
@@ -524,7 +531,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: 'Popping-Light',
-                          color: Color(0xFF303F46),
+                          color: bodytext_color,
                         ),
                       ),
                     ],

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+import '../providers/theme_provider.dart';
 class Discover_Page extends StatefulWidget {
   const Discover_Page({Key? key}) : super(key: key);
 
@@ -13,6 +16,8 @@ class _Discover_PageState extends State<Discover_Page> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade600 : Color(0xFF44A8E0);
+    final minicont_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade600 :Colors.blueGrey;
     return Scaffold(
       body: Stack(
         children: [
@@ -22,7 +27,7 @@ class _Discover_PageState extends State<Discover_Page> {
                 Container(
                   height: _height*0.35,
                   decoration: BoxDecoration(
-                    color: Color(0xFF44A8E0),
+                    color: color,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(top: 60.0, left: 10, bottom: 15),
@@ -35,7 +40,6 @@ class _Discover_PageState extends State<Discover_Page> {
                           child: Text("Discover \nOur Blog",
                             style: TextStyle(
                                 fontSize: 28,
-                                color: Colors.white,
                                 fontFamily: "Poppins-ExtraBold"
                             ),
                           ),
@@ -52,7 +56,6 @@ class _Discover_PageState extends State<Discover_Page> {
                           child: Text("Discover latest tips, ideas and info",
                             style: TextStyle(
                                 fontSize: 16,
-                                color: Colors.white,
                                 fontFamily: "Poppins-Medium"
                             ),
                           ),
@@ -64,7 +67,7 @@ class _Discover_PageState extends State<Discover_Page> {
               ],
             ),),
           Positioned(
-            top: 270,
+            top: 255,
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               height: 60,
@@ -121,7 +124,6 @@ class _Discover_PageState extends State<Discover_Page> {
                     padding: const EdgeInsets.only(bottom: 15),
                     child: Text("People Near You",style: TextStyle(
                         fontSize: 18,
-                        color: Color(0xFF303F46),
                         fontFamily: "Poppins-Bold"
                     ),),
                   ),
@@ -138,7 +140,7 @@ class _Discover_PageState extends State<Discover_Page> {
                                 width: _width/2.8,
                                 margin: EdgeInsets.only(right: 16, bottom: 8),
                                 decoration: BoxDecoration(
-                                    color: Color(0xFFE8F3F3),
+                                    color: minicont_color,
                                     borderRadius: BorderRadius.circular(10),
                                     boxShadow: [
                                       BoxShadow(
@@ -153,7 +155,7 @@ class _Discover_PageState extends State<Discover_Page> {
                                       flex: 2,
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: Colors.blueGrey,
+                                          color: minicont_color,
                                           borderRadius: BorderRadius.circular(8),
                                         ),
                                         child: ClipRRect(
@@ -198,7 +200,7 @@ class _Discover_PageState extends State<Discover_Page> {
                                 width: _width/2.8,
                                 margin: EdgeInsets.only(right: 16, bottom: 8),
                                 decoration: BoxDecoration(
-                                    color: Color(0xFFE8F3F3),
+                                    color: minicont_color,
                                     borderRadius: BorderRadius.circular(10),
                                     boxShadow: [
                                       BoxShadow(
@@ -213,7 +215,7 @@ class _Discover_PageState extends State<Discover_Page> {
                                       flex: 2,
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: Colors.blueGrey,
+                                          color: minicont_color,
                                           borderRadius: BorderRadius.circular(8),
                                         ),
                                         child: ClipRRect(
@@ -255,7 +257,7 @@ class _Discover_PageState extends State<Discover_Page> {
                                 width: _width/2.8,
                                 margin: EdgeInsets.only(right: 16, bottom: 8),
                                 decoration: BoxDecoration(
-                                    color: Color(0xFFE8F3F3),
+                                    color: minicont_color,
                                     borderRadius: BorderRadius.circular(10),
                                     boxShadow: [
                                       BoxShadow(
@@ -270,7 +272,7 @@ class _Discover_PageState extends State<Discover_Page> {
                                       flex: 2,
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: Colors.blueGrey,
+                                          color: minicont_color,
                                           borderRadius: BorderRadius.circular(8),
                                         ),
                                         child: ClipRRect(
@@ -312,7 +314,7 @@ class _Discover_PageState extends State<Discover_Page> {
                                 width: _width/2.8,
                                 margin: EdgeInsets.only(right: 16, bottom: 8),
                                 decoration: BoxDecoration(
-                                    color: Color(0xFFE8F3F3),
+                                    color: minicont_color,
                                     borderRadius: BorderRadius.circular(10),
                                     boxShadow: [
                                       BoxShadow(
@@ -352,7 +354,7 @@ class _Discover_PageState extends State<Discover_Page> {
                                               "Why You Should\nChoose Us",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                  fontSize: 14,
+                                                  fontSize: 12,
                                                   fontFamily: 'Poppins-SemiBold'),
                                             ),
                                           ],
@@ -371,7 +373,6 @@ class _Discover_PageState extends State<Discover_Page> {
                     padding: const EdgeInsets.only(bottom: 15),
                     child: Text("Recent Feeds",style: TextStyle(
                         fontSize: 18,
-                        color: Color(0xFF303F46),
                         fontFamily: "Poppins-Bold"
                     ),),
                   ),

@@ -5,11 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 import '../../Home/checkerpage/digitalForm.dart';
 import '../../Home/checkerpage/policy_details.dart';
 import '../../Models/insura_.model.dart';
 import '../../data_service/insura_data.dart';
+import '../../providers/theme_provider.dart';
 
 class CheckerTab extends StatefulWidget {
   const CheckerTab({Key? key}) : super(key: key);
@@ -30,6 +32,7 @@ class _CheckerTabState extends State<CheckerTab> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
     var userName = FirebaseAuth.instance.currentUser!.displayName;
 
     return Column(
@@ -41,7 +44,7 @@ class _CheckerTabState extends State<CheckerTab> {
             height: 400,
             width: _width,
             decoration: BoxDecoration(
-              color: Color(0xFFE8F3F3),
+              color: color,
               boxShadow: [
                 BoxShadow(
                     color: Colors.black.withOpacity(0.1),
@@ -69,7 +72,6 @@ class _CheckerTabState extends State<CheckerTab> {
                         style: TextStyle(
                           fontFamily: "Poppins-Bold",
                           fontSize: 18,
-                          color: Color(0xFF303F46),
                         ),
                       ),
                     ),
@@ -80,7 +82,7 @@ class _CheckerTabState extends State<CheckerTab> {
                   height: 60,
                   width: MediaQuery.of(context).size.width - 40,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.white70,
                     boxShadow: [
                       BoxShadow(
                           color: Colors.black.withOpacity(0.1),
@@ -169,7 +171,6 @@ class _CheckerTabState extends State<CheckerTab> {
             style: TextStyle(
               fontFamily: "Poppins-Bold",
               fontSize: 20,
-              color: Color(0xFF303F46),
             ),
           ),
         ),
@@ -202,13 +203,14 @@ class _CheckerTabState extends State<CheckerTab> {
   // status card
   Padding statusCard(
       double _width, double _height, InsuraCardModel cardModel, bool isActive) {
+    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Container(
           width: _width,
           height: _height <= 700 ? 185 : 200,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: color,
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
@@ -274,9 +276,9 @@ class _CheckerTabState extends State<CheckerTab> {
                               "${cardModel.company}",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(fontSize: 12,
+                              style: TextStyle(fontSize: 11,
                               color: isActive
-                                  ? Color(0xFF303F46)
+                                  ? Colors.white60
                                   : Colors.red,
                               fontFamily: "Poppins-Bold",),),
                             Text("Insurance type: Vehicle Insurance", style: TextStyle(fontSize: 13,
