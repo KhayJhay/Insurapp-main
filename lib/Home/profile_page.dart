@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../Models/users.dart';
 import '../providers/theme_provider.dart';
+import 'change_theme_button_widget.dart';
 import 'checkerpage/checker_page.dart';
 class ProfilPage extends StatefulWidget {
   const ProfilPage({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class _ProfilPageState extends State<ProfilPage> {
             height: 140,
             width: 200,
             child: Image.asset("assets/pngs/logobg1.png")),
-        leading: IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.slider_horizontal_3, color: Colors.grey,size: 26,),),
+        leading: ChangeThemeButtonWidget(),
         actions: [
           IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell_solid, color: Colors.grey,size: 26,),),
         ],

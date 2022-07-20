@@ -8,6 +8,7 @@ import 'package:insurapp/Sub-menu/help&support/Road%20Assistance.dart';
 import 'package:provider/provider.dart';
 
 import '../../Home/Navigation_drawer/menu_widget.dart';
+import '../../Home/change_theme_button_widget.dart';
 import '../../providers/theme_provider.dart';
 class Help_Support extends StatelessWidget {
   const Help_Support({Key? key}) : super(key: key);
@@ -31,23 +32,13 @@ class Help_Support extends StatelessWidget {
             height: 140,
             width: 200,
             child: Image.asset("assets/pngs/logobg1.png")),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Mainpage()));
-          },
-          icon: Icon(
-            CupertinoIcons.chevron_back,
-            color: Colors.grey,
-          ),
-        ),
+        leading: ChangeThemeButtonWidget(),
         actions: [
           IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell_solid, color: Colors.grey,size: 26,),),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               height: 60,
@@ -281,6 +272,32 @@ class Help_Support extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 30.0,),
+              child: InkWell(
+                onTap: (){
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  width: 200,
+                  height: 60,
+                  decoration: BoxDecoration(
+                      color: welcome_color,
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(color: Colors.grey,width: 0.5)
+                  ),
+                  child: Center(
+                    child: Text("BACK",
+                      style: TextStyle(
+                        fontSize: 16,
+                        letterSpacing: 2,
+                        fontFamily: "Poppins-SemiBold",
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:insurapp/Home/profile_page.dart';
 import 'package:provider/provider.dart';
 
 import '../Authentication/userCredential.dart';
@@ -37,11 +38,17 @@ class Settings_Screen extends StatelessWidget {
           },
           icon: Icon(
             CupertinoIcons.chevron_back,
+            color: Colors.grey,
           ),
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfilPage()));
+            },
             icon: Icon(
               CupertinoIcons.profile_circled,
               color: Colors.grey,

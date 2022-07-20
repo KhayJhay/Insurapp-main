@@ -33,6 +33,7 @@ class Services extends StatelessWidget {
           },
           icon: Icon(
             CupertinoIcons.chevron_back,
+            color: Colors.grey,
           ),
         ),
         actions: [
