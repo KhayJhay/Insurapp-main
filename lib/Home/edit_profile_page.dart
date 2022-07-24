@@ -150,10 +150,7 @@ class _Edit_Profile_PageState extends State<Edit_Profile_Page> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        OutlineButton(
-                          padding: EdgeInsets.symmetric(horizontal: 50),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
+                        OutlinedButton(
                           onPressed: () {},
                           child: Text("CANCEL",
                               style: TextStyle(

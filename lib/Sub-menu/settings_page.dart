@@ -148,10 +148,7 @@ class Settings_Screen extends StatelessWidget {
                       height: 50,
                     ),
                     Center(
-                      child: OutlineButton(
-                        padding: EdgeInsets.symmetric(horizontal: 40),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
+                      child: OutlinedButton(
                         onPressed: () {
                           SchedulerBinding.instance!.addPostFrameCallback((_) {
                             Auth.signout(context: context);
