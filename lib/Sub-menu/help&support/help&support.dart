@@ -6,8 +6,6 @@ import 'package:insurapp/Sub-menu/about_insurapp.dart';
 import 'package:insurapp/Sub-menu/chat_screen/customer_serv_chat.dart';
 import 'package:insurapp/Sub-menu/help&support/Road%20Assistance.dart';
 import 'package:provider/provider.dart';
-
-import '../../Home/Navigation_drawer/menu_widget.dart';
 import '../../Home/change_theme_button_widget.dart';
 import '../../providers/theme_provider.dart';
 class Help_Support extends StatelessWidget {

@@ -4,10 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurapp/Home/change_theme_button_widget.dart';
 import 'package:insurapp/Home/checkerpage/checker_page.dart';
-import 'package:insurapp/Home/Navigation_drawer/menu_widget.dart';
 import 'package:insurapp/Home/notifications_page.dart';
 import 'package:insurapp/Sub-menu/services.dart';
-import 'package:insurapp/Sub-menu/settings_page.dart';
+import 'package:insurapp/Sub-menu/settings/settings_page.dart';
 import 'package:insurapp/Sub-menu/about_insurapp.dart';
 import 'package:insurapp/Sub-menu/contact_page.dart';
 import 'package:lottie/lottie.dart';
@@ -15,6 +14,7 @@ import 'package:provider/provider.dart';
 
 import '../Models/users.dart';
 import '../Sub-menu/help&support/help&support.dart';
+import '../Sub-menu/settings/sub_pages/main_settings_page.dart';
 import '../providers/notify_provider.dart';
 import '../providers/theme_provider.dart';
 
@@ -425,7 +425,7 @@ class _HomePageState extends State<HomePage> {
                             size: 30,
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(context, Settings_Screen.id);
+                            Navigator.pushNamed(context, MainSettingsPage.id);
                           },
                         ),
                       ),

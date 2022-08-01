@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "insurappsupport-9oto",
+  "private_key_id": "1e8d449418ae965ad1565d9343e160aa0869468c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC88qo81mOP/LHO\nNrtPjELUyg4p6G0MYVpZMZvtnN31CXgJ77eMSm/2a74yR1/guOKiYIwHBsvInVB2\nxnyyyLoo4RM3kf8mfGtNtj0JaBPvluhDUeg81Qosf08prjq/P+dX4q5f6pzJBA0W\nuMjnye9g8mK97PaAsWvMbXkrbi3Ek6nWwSRkurxVGfYKtiJgYNKWB8NsuXPBmQ/Z\nmElgzVeKT1rei/iyG9JebfTj3CE8Hc71YPzYLy43CunkdthWirqhVlYj2m0XRNqm\nfZ4VPdkR/O/7oXcDgx1Z6gWKBTfTmZJj8g7TJoG9R/TUfckS10KNRtCuYiNrFQZY\nR7f8Hs1JAgMBAAECggEAAqaPVZDm3uhbOLK7HDWyItDOU89tRzMO7MklwDa3BObb\n+py0qRjKuwzeI0+txEXntQIweLFDVtZBIJdufKYU+XmV1s3bI9ezPCj6MHl3rSDj\nc31QyhitfrwO+N1XOONdPBYDnvgYOLgwNFFFjT3fmC8yTCqItzu18M1Y2a9/IB6x\nfinTMBCU9WniW6beNThdpS5PH1w53KzDeTS4NQIkgz3KQSGjtJFpmHylT3ofa+7V\no4WBEvocW8fIbEyg7H73kOGo4LJKkLQ7F/8N7C2wTx1Z719iVORz1pniCSagIu4X\nrb6rHirYZAblacgZLue6GHBdIJoxFbZcwucHDKk2AQKBgQDvGG8Ze1QpCU+3Unx6\nLGAdsynQvG86I+LWaZWOwYf9OCrU+D8RpdIiz/VC8HgmGRpZia6YHhvpL4Foia4I\nl6ZYbwtd06iWRlmwVBDhhFUUJ5P6XNZDAFnA+fEAg3SbdeR+4Ki+APjm+u+NlxeY\nLRNyFo45Soy5XuNgmH7NlvLLSQKBgQDKTpLS3przx755dmnMYIjEU8GiufBLHcx1\nhYlrKmYHsDWUS+UEOjvtMQ3Ku8EC8+JWhJz2A24f/beaC06vEA5O0RX1HchxSZ0m\ntV9b2CBtiX/iCBklqi/x0WoRKeIU9Ej491aUkJ0JuOcOVHj2G9gSRWCMQuwpBX20\n2dgI7/nyAQKBgH1DQNmJynLhZPk3Zu2fGBAXUH4Cawd7y5jnoiozbGqWpaIEGQ7G\n4EvKxcT3NQtItYxZXLZnd9n4QIUjNKFdyhGkw8C5Zias3spJkLqF2QkBHz7YqoxZ\nv6whhkjtlgbogfiS/PTmj4B70UtN8FeSrhBkjsinLQjlFJ0D59MQFU25AoGBAKhz\n6JmhNdELXzTwPoQpVXh0bWW8AbPqahbpTFVphm+cb+C9mUJ94uxLzjojQEHfJXX5\nEmFe1dHZh4nDJI9shR1nyCrD0+VQ8IQMvgxR2B6dQVjKeXX9UdK/FtyXzWK5ThHQ\nkc0+5SP1TJ+IAviakr4T+qKQDujRY6y1P8ehWrQBAoGAEEY4598C8eU+tCTDtFuU\nqmkvJdT7/zdznRvySjkl60VexsCShCxLi+XsomNtUzsw8tBs/R9CPHE+BXwVWxw3\nKjftjen0gwqFhRfAxJuAeDwlscWmlt46iPGYT97hN/CRbO4idaJeVA/J+SeriSSg\n2AMIz3QNuvzC4LJhymH8PnU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "insurappsupport@insurappsupport-9oto.iam.gserviceaccount.com",
+  "client_id": "116978744662290603885",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/insurappsupport%40insurappsupport-9oto.iam.gserviceaccount.com"
+}

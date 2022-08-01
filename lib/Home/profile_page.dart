@@ -50,9 +50,6 @@ class _ProfilPageState extends State<ProfilPage> {
             width: 200,
             child: Image.asset("assets/pngs/logobg1.png")),
         leading: ChangeThemeButtonWidget(),
-        actions: [
-          IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell_solid, color: Colors.grey,size: 26,),),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(

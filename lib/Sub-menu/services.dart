@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurapp/Home/checkerpage/checker_page.dart';
-import 'package:insurapp/Sub-menu/settings_page.dart';
+import 'package:insurapp/Sub-menu/settings/settings_page.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/theme_provider.dart';

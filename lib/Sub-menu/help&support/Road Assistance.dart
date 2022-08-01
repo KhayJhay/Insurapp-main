@@ -1,5 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:insurapp/Sub-menu/help&support/road_assistance/dead_battery.dart';
+import 'package:insurapp/Sub-menu/help&support/road_assistance/engine_heat_tips.dart';
+import 'package:insurapp/Sub-menu/help&support/road_assistance/flat_tire.dart';
+import 'package:insurapp/Sub-menu/help&support/road_assistance/low_fuel.dart';
+import 'package:insurapp/Sub-menu/help&support/road_assistance/towing_tips.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/theme_provider.dart';
@@ -31,6 +36,7 @@ class Road_Assistance_Page extends StatelessWidget {
           },
           icon: Icon(
             CupertinoIcons.chevron_back,
+            color: Colors.grey,
           ),
         ),
         actions: [
@@ -84,214 +90,244 @@ class Road_Assistance_Page extends StatelessWidget {
                         crossAxisSpacing: 13,
                         childAspectRatio: 1.1,
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: color,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 10,
-                                    spreadRadius: 3),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20.0),
-                                  child: Container(
-                                      height: 65,
-                                      width: 65,
-                                      decoration: BoxDecoration(
-                                          color: color,
-                                          borderRadius: BorderRadius.circular(15)
-                                      ),
-                                      child: Image.asset('assets/pngs/h1.png')
+                          GestureDetector(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: color,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 10,
+                                      spreadRadius: 3),
+                                ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20.0),
+                                    child: Container(
+                                        height: 65,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                            color: color,
+                                            borderRadius: BorderRadius.circular(15)
+                                        ),
+                                        child: Image.asset('assets/pngs/h1.png')
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Text("Low Fuel",style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Poppins-SemiBold',
-                                  ),),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text("Low Fuel",style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'Poppins-SemiBold',
+                                    ),),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => LowFuelTips()));
+                            },
+                          ),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Flat_Tire_Tips()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: color,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 10,
+                                      spreadRadius: 3),
+                                ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 30.0),
+                                    child: Container(
+                                        height: 65,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                            color: color,
+                                            borderRadius: BorderRadius.circular(15)
+                                        ),
+                                        child: Image.asset('assets/pngs/h2.png')
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text("Flat Tire",style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'Poppins-SemiBold',
+                                    ),),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: color,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 10,
-                                    spreadRadius: 3),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 30.0),
-                                  child: Container(
-                                      height: 65,
-                                      width: 65,
-                                      decoration: BoxDecoration(
-                                          color: color,
-                                          borderRadius: BorderRadius.circular(15)
-                                      ),
-                                      child: Image.asset('assets/pngs/h2.png')
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => TowingTips()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: color,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 10,
+                                      spreadRadius: 3),
+                                ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 30.0),
+                                    child: Container(
+                                        height: 65,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                            color: color,
+                                            borderRadius: BorderRadius.circular(15)
+                                        ),
+                                        child: Image.asset('assets/pngs/h3.png')
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Text("Flat Tire",style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Poppins-SemiBold',
-                                  ),),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text("Towing",style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'Poppins-SemiBold',
+                                    ),),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: color,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 10,
-                                    spreadRadius: 3),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 30.0),
-                                  child: Container(
-                                      height: 65,
-                                      width: 65,
-                                      decoration: BoxDecoration(
-                                          color: color,
-                                          borderRadius: BorderRadius.circular(15)
-                                      ),
-                                      child: Image.asset('assets/pngs/h3.png')
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => DeadBatteryTips()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: color,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 10,
+                                      spreadRadius: 3),
+                                ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 30.0),
+                                    child: Container(
+                                        height: 65,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                            color: color,
+                                            borderRadius: BorderRadius.circular(15)
+                                        ),
+                                        child: Image.asset('assets/pngs/h5.png')
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Text("Recovery",style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Poppins-SemiBold',
-                                  ),),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text("Dead Battery",style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: 'Poppins-SemiBold',
+                                    ),),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: color,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 10,
-                                    spreadRadius: 3),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 30.0),
-                                  child: Container(
-                                      height: 65,
-                                      width: 65,
-                                      decoration: BoxDecoration(
-                                          color: color,
-                                          borderRadius: BorderRadius.circular(15)
-                                      ),
-                                      child: Image.asset('assets/pngs/h5.png')
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => EngineHeatTips()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: color,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 10,
+                                      spreadRadius: 3),
+                                ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 30.0),
+                                    child: Container(
+                                        height: 65,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                            color: color,
+                                            borderRadius: BorderRadius.circular(15)
+                                        ),
+                                        child: Image.asset('assets/pngs/h7.png')
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Text("Dead Battery",style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: 'Poppins-SemiBold',
-                                  ),),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text("Engine Heat",style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'Poppins-SemiBold',
+                                    ),),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: color,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 10,
-                                    spreadRadius: 3),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 30.0),
-                                  child: Container(
-                                      height: 65,
-                                      width: 65,
-                                      decoration: BoxDecoration(
-                                          color: color,
-                                          borderRadius: BorderRadius.circular(15)
-                                      ),
-                                      child: Image.asset('assets/pngs/h7.png')
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => EngineHeatTips()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: color,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 10,
+                                      spreadRadius: 3),
+                                ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 30.0),
+                                    child: Container(
+                                        height: 65,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                            color: color,
+                                            borderRadius: BorderRadius.circular(15)
+                                        ),
+                                        child: Image.asset('assets/pngs/h6.png')
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Text("Engine Heat",style: TextStyle(
-                                    fontSize: 13,
-                                    fontFamily: 'Poppins-SemiBold',
-                                  ),),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: color,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 10,
-                                    spreadRadius: 3),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 30.0),
-                                  child: Container(
-                                      height: 65,
-                                      width: 65,
-                                      decoration: BoxDecoration(
-                                          color: color,
-                                          borderRadius: BorderRadius.circular(15)
-                                      ),
-                                      child: Image.asset('assets/pngs/h6.png')
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text("Engine Oil",style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'Poppins-SemiBold',
+                                    ),),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Text("Engine Oil",style: TextStyle(
-                                    fontSize: 13,
-                                    fontFamily: 'Poppins-SemiBold',
-                                  ),),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
