@@ -14,6 +14,7 @@ import 'Home/mainpage.dart';
 import 'Home/notifications_page.dart';
 import 'Sub-menu/settings/settings_page.dart';
 import 'OnBording/splash_screen.dart';
+import 'providers/dig_providers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,9 +27,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MultiProvider(
         providers: [
           ChangeNotifierProvider(
-              create: (BuildContext context) => NotificationProvider()),
+              create: (BuildContext context) => DigitalProvider(),),
           ChangeNotifierProvider(
-              create: (context) => ThemeProvider()),
+              create: (BuildContext context) => NotificationProvider(),),
+          ChangeNotifierProvider(
+              create: (context) => ThemeProvider(),),
         ],
         child: FutureBuilder(
             future: Auth.initializeFirebase(),

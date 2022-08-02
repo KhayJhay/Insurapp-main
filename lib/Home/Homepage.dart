@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 import '../Models/users.dart';
 import '../Sub-menu/help&support/help&support.dart';
 import '../Sub-menu/settings/sub_pages/main_settings_page.dart';
+import '../providers/dig_providers.dart';
 import '../providers/notify_provider.dart';
 import '../providers/theme_provider.dart';
 
@@ -47,11 +48,26 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
-    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
-    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
-    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
-    final shadowcolor = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Colors.black;
+    final color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade800
+            : Color(0xFFE8F3F3);
+    final appbar_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade700
+            : Colors.white;
+    final welcome_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade800
+            : Color(0xFFE3E7E8);
+    final bodytext_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.white
+            : Color(0xFF303F46);
+    final shadowcolor =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.white
+            : Colors.black;
     setState(() {
       isOpen = Provider.of<NotificationProvider>(context).isRead;
     });
@@ -226,8 +242,8 @@ class _HomePageState extends State<HomePage> {
               child: Text(
                 "Sub Menu",
                 style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: "Poppins-Bold",
+                  fontSize: 16,
+                  fontFamily: "Poppins-Bold",
                   color: bodytext_color,
                 ),
               ),
@@ -281,10 +297,9 @@ class _HomePageState extends State<HomePage> {
                         "Customer\nSupport",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 15,
-                          fontFamily: 'Popping-Light',
-                          color: bodytext_color
-                        ),
+                            fontSize: 15,
+                            fontFamily: 'Popping-Light',
+                            color: bodytext_color),
                       ),
                     ],
                   ),

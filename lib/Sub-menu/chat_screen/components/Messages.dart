@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../providers/theme_provider.dart';
 
 class MessagesScreen extends StatefulWidget {
   final List messages;
@@ -11,6 +14,7 @@ class MessagesScreen extends StatefulWidget {
 class _MessagesScreenState extends State<MessagesScreen> {
   @override
   Widget build(BuildContext context) {
+    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
     var w = MediaQuery.of(context).size.width;
     return ListView.separated(
         itemBuilder: (context, index) {
@@ -36,10 +40,10 @@ class _MessagesScreenState extends State<MessagesScreen> {
                         ),
                         color: widget.messages[index]['isUserMessage']
                             ? Color(0xFF44A8E0)
-                            : Colors.white),
-                    constraints: BoxConstraints(maxWidth: w * 2 / 3),
+                            : appbar_color),
+                    constraints: BoxConstraints(maxWidth: w * 2 / 3,),
                     child:
-                        Text(widget.messages[index]['message'].text.text[0])),
+                        Text(widget.messages[index]['message'].text.text[0]),),
               ],
             ),
           );

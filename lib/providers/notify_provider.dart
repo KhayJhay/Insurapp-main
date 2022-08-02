@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:insurapp/Models/noty_model.dart';
 
-class NotificationProvider with ChangeNotifier {
+class NotificationProvider extends ChangeNotifier {
   List<NotificationModel> _notify = [];
   bool _isRead = false;
 

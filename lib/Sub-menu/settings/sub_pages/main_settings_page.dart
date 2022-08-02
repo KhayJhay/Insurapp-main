@@ -1,3 +1,5 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -178,7 +180,7 @@ class _MainSettingsPageState extends State<MainSettingsPage> {
         desc: 'You are sign out of your account',
         btnCancelOnPress: () {},
         btnOkOnPress: () {
-          SchedulerBinding.instance!.addPostFrameCallback((_) {
+          SchedulerBinding.instance.addPostFrameCallback((_) {
             Auth.signout(context: context);
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(

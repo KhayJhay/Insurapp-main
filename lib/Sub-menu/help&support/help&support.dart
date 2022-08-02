@@ -30,9 +30,17 @@ class Help_Support extends StatelessWidget {
             height: 140,
             width: 200,
             child: Image.asset("assets/pngs/logobg1.png")),
-        leading: ChangeThemeButtonWidget(),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Mainpage()));
+          },
+          icon: Icon(
+            CupertinoIcons.chevron_back,
+            color: Colors.black,
+          ),
+        ),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell_solid, color: Colors.grey,size: 26,),),
+          ChangeThemeButtonWidget(),
         ],
       ),
       body: SingleChildScrollView(

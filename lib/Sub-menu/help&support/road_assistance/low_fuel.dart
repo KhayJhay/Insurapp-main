@@ -66,107 +66,114 @@ class _LowFuelTipsState extends State<LowFuelTips> {
                 ),),
               ),
             ),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Keep your cool",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("There is no point getting all worked up when you see the low fuel warning light"
-                      " on the speedometer console. Most modern day cars will still have about "
-                      "5 liters of usable fuel left in the petrol tank. ",
-                    style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/1-circle-c.png"),
-                ),
+            Padding(
+              padding: const EdgeInsets.only(top: 25.0),
+              child: Column(
+                children: [
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Keep your cool",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("There is no point getting all worked up when you see the low fuel warning light"
+                            " on the speedometer console. Most modern day cars will still have about "
+                            "5 liters of usable fuel left in the petrol tank. ",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontFamily: "Poppins-Light",
+                          ),),
+                        leading:  Image.asset("assets/pngs/1-circle-c.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Search for the nearest fuel station",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("Make use of Google Maps application on your mobile phone to locate the nearest fuel pump.  ", style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/2-circle.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Limit fuel consuming devices usage.",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("Units such as air-conditioning unit puts a heavy load on the engine of a small car.  ", style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/3-circle.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Reduce acceleration drastically",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("Save fuel by accelerating gently and changing gears at the right engine speed.  ", style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/4-circle.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => StartClaim()));
+                        },
+                        title: Text("For Further Assistance",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("For further helpful assistance make a claim by clicking here  ", style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/5-circle-c.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                ],
               ),
             ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Search for the nearest fuel station",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("Make use of Google Maps application on your mobile phone to locate the nearest fuel pump.  ", style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/2-circle.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Limit fuel consuming devices usage.",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("Units such as air-conditioning unit puts a heavy load on the engine of a small car.  ", style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/3-circle.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Reduce acceleration drastically",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("Save fuel by accelerating gently and changing gears at the right engine speed.  ", style: TextStyle(
-                    fontSize: 12,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/4-circle.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => StartClaim()));
-                  },
-                  title: Text("For Further Assistance",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("For further helpful assistance make a claim by clicking here  ", style: TextStyle(
-                    fontSize: 12,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/5-circle-c.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
           ],
         ),
       ),

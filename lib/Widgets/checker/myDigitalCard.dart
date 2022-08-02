@@ -3,7 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 import '../../Models/insura_.model.dart';
+import '../../providers/dig_providers.dart';
 import '../digitalcard.dart';
 
 class My_Digital_ID extends StatefulWidget {
@@ -17,21 +19,13 @@ class _My_Digital_IDState extends State<My_Digital_ID> {
   bool isFalse = false;
   bool isActive = true;
   DigitalIDModel _digiatal = DigitalIDModel();
-  // InsuraCardModel _digitalIDModel = InsuraCardModel();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   DigitalProvider().getDigitalPage(context);
-  // }
 
   @override
   Widget build(BuildContext context) {
-    // DigitalProvider().getDigitalPage(context);
+    final digitalProvider = Provider.of<DigitalProvider>(context);
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    final collectionReference =
-    FirebaseFirestore.instance.collection('insuracard');
+
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('digitalCard')
@@ -39,17 +33,26 @@ class _My_Digital_IDState extends State<My_Digital_ID> {
           .snapshots(),
       builder: (context,
           AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-        if (snapshot.hasError) {
-          return Center(child: DigitalNullCard());
-        }
-        if (snapshot.hasData && snapshot.data != null) {
-          _digiatal = DigitalIDModel.fromJson(snapshot.data.docs.first.data());
+        if (snapshot.data == null) {
           return Center(
-            child:  DigitalCard(
-                width: _width,
-                height: _height,
-                digiatal: _digiatal,
-                isActive: isActive),
+            child: DigitalNullCard(),
+          );
+        } else if (snapshot.hasError) {
+          return Center(
+            child: DigitalNullCard(),
+          );
+        } else if (snapshot.hasData && snapshot.data != null) {
+          _digiatal = DigitalIDModel.fromJson(
+            snapshot.data.docs.first.data(),
+          );
+          digitalProvider.addDigitalCard(_digiatal);
+          return Center(
+            child: DigitalCard(
+              width: _width,
+              height: _height,
+              digiatal: _digiatal,
+              isActive: isActive,
+            ),
           );
         }
         return Center(
@@ -59,24 +62,5 @@ class _My_Digital_IDState extends State<My_Digital_ID> {
         );
       },
     );
-    // _digiatal = DigitalProvider().digiatal;
-    // _digitalIDModel = DigitalProvider().digitalIDModel;
-
-    // if (DigitalProvider().isLoading) {
-    //   return Center(
-    //     child: SpinKitSpinningLines(
-    //       color: Colors.lightGreen,
-    //     ),
-    //   );
-    // } else {
-    //   return Center(
-    //     child: _digiatal.policyNumber!.isEmpty
-    //         ? DigitalNullCard()
-    //         : DigitalCard(
-    //             width: _width,
-    //             height: _height,
-    //             digiatal: _digiatal,
-    //             isActive: isActive),
-    //   );
   }
 }

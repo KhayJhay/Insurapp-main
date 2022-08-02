@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../Home/checkerpage/digitalForm.dart';
+import '../Home/checkerpage/policy_details.dart';
 import '../Models/insura_.model.dart';
 import '../providers/theme_provider.dart';
 
@@ -15,7 +16,11 @@ class DigitalNullCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+
+    final appbar_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade700
+            : Colors.white;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -76,6 +81,7 @@ class DigitalNullCard extends StatelessWidget {
   }
 }
 
+
 class DigitalCard extends StatefulWidget {
   const DigitalCard({
     Key? key,
@@ -99,11 +105,16 @@ class DigitalCard extends StatefulWidget {
   @override
   State<DigitalCard> createState() => _DigitalCardState();
 }
-
 class _DigitalCardState extends State<DigitalCard> {
   @override
+  InsuraCardModel cardModel = InsuraCardModel();
+  bool isActive = false;
   Widget build(BuildContext context) {
-    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
+    final appbar_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade700
+            : Colors.white;
+    //
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -183,18 +194,21 @@ class _DigitalCardState extends State<DigitalCard> {
                                     ),
                                   ),
                                   TextSpan(
-                                    text: "  "
-                                        "Verified",
+                                    text: widget.isActive
+                                        ? "  " "Verified"
+                                        : " " "Not Verified",
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color: Color(0xFF1D95DA),
+                                      color: widget.isActive
+                                          ? Color(0xFF1D95DA)
+                                          : Colors.red,
                                       fontFamily: "Poppins-Light",
                                     ),
                                   ),
                                   TextSpan(
                                     text: "\n${widget._digiatal.company}",
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 11,
                                       color: Color(0xFF303F46),
                                       fontFamily: "Poppins-Bold",
                                     ),
@@ -249,13 +263,23 @@ class _DigitalCardState extends State<DigitalCard> {
                   padding:
                       const EdgeInsets.only(top: 15.0, right: 25, left: 25),
                   child: Center(
-                    child: Text(
-                      "VIEW FULL ID",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        letterSpacing: 2,
-                        fontFamily: "Poppins-SemiBold",
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => PolicyDetails(
+                                cardModel: cardModel, isActive: isActive),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "VIEW FULL ID",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                          letterSpacing: 2,
+                          fontFamily: "Poppins-SemiBold",
+                        ),
                       ),
                     ),
                   ),

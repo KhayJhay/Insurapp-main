@@ -2,12 +2,16 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insurapp/Authentication/userCredential.dart';
+import '../Models/users.dart';
 import '../Widgets/authWedget.dart';
 import 'resetpassword.dart';
 
@@ -30,11 +34,13 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
   final passController = TextEditingController();
   final mobileController = TextEditingController();
 
-  late File image;
   bool isCheck = false;
+
+  late File imageFile;
 
   /// Get from gallery
 
+  /// Get from gallery
 
   @override
   Widget build(BuildContext context) {

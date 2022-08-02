@@ -57,105 +57,112 @@ class Engine_Oil_Tips extends StatelessWidget {
                 ),),
               ),
             ),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Jack It Up, Open It Up",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("First, you'll want to lift the car high enough to give yourself room to work under it. Whether you use a hoist, ramps, or jack stands, make sure you are being absolutely safe.",
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontFamily: "Poppins-Light",
-                    ),),
-                  leading:  Image.asset("assets/pngs/1-circle-c.png"),
-                ),
+            Padding(
+              padding: const EdgeInsets.only(top:25.0),
+              child: Column(
+                children: [
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Jack It Up, Open It Up",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("First, you'll want to lift the car high enough to give yourself room to work under it. Whether you use a hoist, ramps, or jack stands, make sure you are being absolutely safe.",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontFamily: "Poppins-Light",
+                          ),),
+                        leading:  Image.asset("assets/pngs/1-circle-c.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Unplug It, Drain It",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("Situate your oil receptacle—five-gallon bucket, oil drain pan (available at an auto-parts store), oil reservoir, or any other sizable liquid-holding container—in such a way that the oil will drain into it ", style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/2-circle.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Off With the Old Filter",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("Find the oil filter. It's the softball-sized cylindrical component screwed onto the engine (though some engines have a housing that you slip a filter cartridge into).  ", style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/3-circle.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Drain Plug in, Filter On",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("Replace the drain plug and tighten it until it's snug, but not too much: Overtightening can cause damage to the oil pan and drain plug. ", style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/4-circle.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => StartClaim()));
+                        },
+                        title: Text("For Further Assistance",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("For further helpful assistance make a claim by clicking here  ", style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/5-circle-c.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                ],
               ),
             ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Unplug It, Drain It",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("Situate your oil receptacle—five-gallon bucket, oil drain pan (available at an auto-parts store), oil reservoir, or any other sizable liquid-holding container—in such a way that the oil will drain into it ", style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/2-circle.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Off With the Old Filter",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("Find the oil filter. It's the softball-sized cylindrical component screwed onto the engine (though some engines have a housing that you slip a filter cartridge into).  ", style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/3-circle.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Drain Plug in, Filter On",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("Replace the drain plug and tighten it until it's snug, but not too much: Overtightening can cause damage to the oil pan and drain plug. ", style: TextStyle(
-                    fontSize: 12,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/4-circle.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => StartClaim()));
-                  },
-                  title: Text("For Further Assistance",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("For further helpful assistance make a claim by clicking here  ", style: TextStyle(
-                    fontSize: 12,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/5-circle-c.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
           ],
         ),
       ),

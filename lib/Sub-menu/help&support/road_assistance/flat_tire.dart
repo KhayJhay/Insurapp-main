@@ -57,106 +57,113 @@ class Flat_Tire_Tips extends StatelessWidget {
                 ),),
               ),
             ),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Be Prepared",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("The first step should happen before a flat tire even happens. "
-                      "Keep the necessary tools in your car to prepare for a potential flat tire",
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontFamily: "Poppins-Light",
-                    ),),
-                  leading:  Image.asset("assets/pngs/1-circle-c.png"),
-                ),
+            Padding(
+              padding: const EdgeInsets.only(top: 25),
+              child: Column(
+                children: [
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Be Prepared",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("The first step should happen before a flat tire even happens. "
+                            "Keep the necessary tools in your car to prepare for a potential flat tire",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontFamily: "Poppins-Light",
+                          ),),
+                        leading:  Image.asset("assets/pngs/1-circle-c.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Pull Over To a Safe Place",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("A flat tire can happen at any moment while traveling on the road. If you notice that your tire is flat, pull over to a safe position on the road. ", style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/2-circle.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Turn on Your Hazard Lights",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("After you find a safe area on the side of the road, turn on your hazard lights. This communicates to other drivers on the road that you’re going to remain in that area for a while.  ", style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/3-circle.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        title: Text("Apply the Parking Brake",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("When you’ve parked at a safe location, make sure you’re on flat, level ground, and apply the parking brake once your vehicle comes to a stop.", style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/4-circle.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      height: 120,
+                      child: ListTile(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => StartClaim()));
+                        },
+                        title: Text("For Further Assistance",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins-SemiBold",
+                          ),),
+                        subtitle:  Text("For further helpful assistance make a claim by clicking here  ", style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: "Poppins-Light",
+                        ),),
+                        leading:  Image.asset("assets/pngs/5-circle-c.png"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                ],
               ),
-            ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Pull Over To a Safe Place",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("A flat tire can happen at any moment while traveling on the road. If you notice that your tire is flat, pull over to a safe position on the road. ", style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/2-circle.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Turn on Your Hazard Lights",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("After you find a safe area on the side of the road, turn on your hazard lights. This communicates to other drivers on the road that you’re going to remain in that area for a while.  ", style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/3-circle.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  title: Text("Apply the Parking Brake",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("When you’ve parked at a safe location, make sure you’re on flat, level ground, and apply the parking brake once your vehicle comes to a stop.", style: TextStyle(
-                    fontSize: 12,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/4-circle.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 120,
-                child: ListTile(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => StartClaim()));
-                  },
-                  title: Text("For Further Assistance",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Poppins-SemiBold",
-                    ),),
-                  subtitle:  Text("For further helpful assistance make a claim by clicking here  ", style: TextStyle(
-                    fontSize: 12,
-                    fontFamily: "Poppins-Light",
-                  ),),
-                  leading:  Image.asset("assets/pngs/5-circle-c.png"),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
+            )
           ],
         ),
       ),
