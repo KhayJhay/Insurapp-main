@@ -114,7 +114,6 @@ class _MainSettingsPageState extends State<MainSettingsPage> {
             SettingsTileGroup(title: 'GENERAL',
                 children: <Widget>[
                   buildAccountSettings(),
-                  buildNotificationSettings(),
                   buildDarkMode(),
                   buildDelete(),
                   buildLogout(),
@@ -234,22 +233,6 @@ class _MainSettingsPageState extends State<MainSettingsPage> {
     onTap: (){
       Navigator.of(context).pushNamed(Settings_Screen.id);
     },
-  );
-  Widget buildNotificationSettings() => ListTile(
-    leading: Container(
-      height: 40,
-      width: 40,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.orange,
-      ),
-      child: Center(
-        child: Icon(Icons.notifications_active, color: Colors.white,),
-      ),
-    ),
-    title: Text("Notifications", style: TextStyle(fontSize: 14, fontFamily: 'Poppins-Medium'),),
-    trailing: Icon(Icons.chevron_right),
-    subtitle: Text("Policy Updates, App Updates", style: TextStyle(fontSize: 12, fontFamily: 'Poppins-Light'),),
   );
   Widget buildReport() => Padding(
     padding: const EdgeInsets.only(top: 15),
