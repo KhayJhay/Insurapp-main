@@ -92,12 +92,21 @@ class InsuraData {
     return response;
   }
 
-  static Future addDigitalCard(BuildContext context, String userId, policyId,
-      profile) async {
+  static Future addDigitalCard(BuildContext context, String userId,
+      InsuraCardModel policyId, profile) async {
     Map<String, dynamic> body = {
       'userId': userId,
       'profile': profile,
-      'policyCard': policyId
+      'policyNumber': policyId.policyNumber,
+      'year': policyId.year,
+      'effectiveDate': policyId.effectiveDate,
+      'expirationDate': policyId.expirationDate,
+      'company': policyId.company,
+      'model': policyId.model,
+      'maker': policyId.maker,
+      'naic': policyId.naic,
+      'vin': policyId.vin,
+      'insured': policyId.insured,
     };
     FirebaseFirestore.instance
         .collection('digitalCard')

@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:insurapp/Sub-menu/settings/sub_pages/main_settings_page.dart';
 import 'package:insurapp/providers/notify_provider.dart';
 import 'package:insurapp/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +12,9 @@ import 'Authentication/userCredential.dart';
 import 'Home/edit_profile_page.dart';
 import 'Home/mainpage.dart';
 import 'Home/notifications_page.dart';
-import 'Sub-menu/settings_page.dart';
+import 'Sub-menu/settings/settings_page.dart';
 import 'OnBording/splash_screen.dart';
+import 'providers/dig_providers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,9 +27,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MultiProvider(
         providers: [
           ChangeNotifierProvider(
-              create: (BuildContext context) => NotificationProvider()),
+              create: (BuildContext context) => DigitalProvider(),),
           ChangeNotifierProvider(
-              create: (context) => ThemeProvider()),
+              create: (BuildContext context) => NotificationProvider(),),
+          ChangeNotifierProvider(
+              create: (context) => ThemeProvider(),),
         ],
         child: FutureBuilder(
             future: Auth.initializeFirebase(),
@@ -57,6 +61,7 @@ class MyApp extends StatelessWidget {
                   routes: {
                     Edit_Profile_Page.id: (context) => Edit_Profile_Page(),
                     Settings_Screen.id: (context) => Settings_Screen(),
+                    MainSettingsPage.id: (context) => MainSettingsPage(),
                     Notifications_Page.id: (context) => Notifications_Page(),
                   },
                 );

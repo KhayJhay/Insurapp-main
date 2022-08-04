@@ -111,36 +111,39 @@ class _Contact_UsState extends State<Contact_Us> {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: RichText(
-                                text: const TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text:"PHONE",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color:Colors.white,
-                                        fontFamily: "Poppins-Bold",
+                              child: Directionality(
+                                textDirection: TextDirection.ltr,
+                                child: RichText(
+                                  text: const TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text:"PHONE",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color:Colors.white,
+                                          fontFamily: "Poppins-Bold",
+                                        ),
                                       ),
-                                    ),
-                                    TextSpan(
-                                      text: "\n(+75) 352 3236",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                        fontFamily: "Poppins-Light",
+                                      TextSpan(
+                                        text: "\n(+75) 352 3236",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.white,
+                                          fontFamily: "Poppins-Light",
+                                        ),
                                       ),
-                                    ),
-                                    TextSpan(
-                                      text:"\n(+75) 352 2266",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                        fontFamily: "Poppins-Light",
+                                      TextSpan(
+                                        text:"\n(+75) 352 2266",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.white,
+                                          fontFamily: "Poppins-Light",
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
-                                textAlign: TextAlign.center,
                               ),
                             ),
                           ],

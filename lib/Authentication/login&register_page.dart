@@ -1,10 +1,17 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:insurapp/Authentication/userCredential.dart';
+import '../Models/users.dart';
 import '../Widgets/authWedget.dart';
 import 'resetpassword.dart';
 
@@ -26,6 +33,14 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
   final mobileController = TextEditingController();
+
+  bool isCheck = false;
+
+  late File imageFile;
+
+  /// Get from gallery
+
+  /// Get from gallery
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +122,7 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
           Positioned(
               top: 200,
               child: Container(
-                height: isSignupScreen ? 500 : 380,
+                height: isSignupScreen ? 480 : 380,
                 padding: EdgeInsets.all(30),
                 width: MediaQuery.of(context).size.width - 40,
                 margin: EdgeInsets.symmetric(horizontal: 20),
@@ -197,7 +212,6 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
                   ],
                 ),
               )),
-
           //third party authentications
           buildSubmitBottomContainer(false),
           if (!isSignupScreen)
@@ -351,7 +365,6 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
   // sign-up section
   Container buildSIgnUpSection() {
     return Container(
-      margin: EdgeInsets.only(top: 20),
       child: Form(
         key: keyForm,
         child: Column(
@@ -402,6 +415,7 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
                     )
                   ]),
             ),
+
           ],
         ),
       ),
@@ -411,7 +425,7 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
   //Authentication Button
   Positioned buildSubmitBottomContainer(bool showShadow) {
     return Positioned(
-        top: isSignupScreen ? 660 : 550,
+        top: isSignupScreen ? 630 : 550,
         right: 0,
         left: 0,
         child: Center(
