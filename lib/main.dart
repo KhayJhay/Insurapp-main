@@ -6,13 +6,14 @@ import 'package:insurapp/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
-
 import 'Authentication/userCredential.dart';
+import 'Home/checkerpage/checker_page.dart';
 import 'Home/edit_profile_page.dart';
 import 'Home/mainpage.dart';
 import 'Home/notifications_page.dart';
 import 'Sub-menu/settings_page.dart';
 import 'OnBording/splash_screen.dart';
+import 'Widgets/checker/cheackerTapCard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,15 +27,47 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
               create: (BuildContext context) => NotificationProvider()),
-          ChangeNotifierProvider(
-              create: (context) => ThemeProvider()),
+          ChangeNotifierProvider(create: (context) => ThemeProvider()),
         ],
         child: FutureBuilder(
             future: Auth.initializeFirebase(),
             builder: (context, snapshot) {
               final themeProvider = Provider.of<ThemeProvider>(context);
               if (snapshot.hasError) {
-                return Text('Something went wrong');
+                print("ERROR ${snapshot.error}");
+                return MaterialApp(
+                    home: Scaffold(
+                        body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Something went wrong',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        // fontStyle: un
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Please report the following Error to you developers",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 28.0),
+                      child: SelectableText("ERROR: ${snapshot.error}"),
+                    ),
+                  ],
+                )));
               }
               if (snapshot.connectionState == ConnectionState.done) {
                 return MaterialApp(
@@ -54,6 +87,7 @@ class MyApp extends StatelessWidget {
                   home: FirebaseAuth.instance.currentUser == null
                       ? SplashScreen()
                       : Mainpage(),
+                  // : Checker_Page(),
                   routes: {
                     Edit_Profile_Page.id: (context) => Edit_Profile_Page(),
                     Settings_Screen.id: (context) => Settings_Screen(),

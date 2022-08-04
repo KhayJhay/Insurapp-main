@@ -62,15 +62,15 @@ class DigitalIDModel {
     vin = json['vin'];
     // effectiveDate = json['effective_date'];7hs
     // expirationDate = json['expiration_date'];
-        (BuildContext context) {
+    (BuildContext context) {
       effectiveDate = (Theme.of(context).platform == TargetPlatform.iOS
           ? DateFormat('dd MMM kk:mm').format(json['effective_date'].toDate())
           : DateFormat('dd MMM kk:mm')
-          .format(json['effective_date'].toDate())) as DateTime?;
+              .format(json['effective_date'].toDate())) as DateTime?;
       expirationDate = (Theme.of(context).platform == TargetPlatform.iOS
           ? DateFormat('dd MMM kk:mm').format(json['expiration_date'].toDate())
           : DateFormat('dd MMM kk:mm')
-          .format(json['expiration_date'].toDate())) as DateTime?;
+              .format(json['expiration_date'].toDate())) as DateTime?;
     };
     naic = json['naic'];
   }
@@ -135,11 +135,11 @@ class InsuraCardModel {
     effectiveDate = (Theme.of(context).platform == TargetPlatform.iOS
         ? DateFormat('dd MMM kk:mm').format(json['effective_date'].toDate())
         : DateFormat('dd MMM kk:mm')
-        .format(json['effective_date'].toDate())) as DateTime?;
+            .format(json['effective_date'].toDate())) as DateTime?;
     expirationDate = (Theme.of(context).platform == TargetPlatform.iOS
         ? DateFormat('dd MMM kk:mm').format(json['expiration_date'].toDate())
         : DateFormat('dd MMM kk:mm')
-        .format(json['expiration_date'].toDate())) as DateTime?;
+            .format(json['expiration_date'].toDate())) as DateTime?;
     naic = json['naic'];
   }
 

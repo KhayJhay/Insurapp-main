@@ -18,10 +18,22 @@ class Settings_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
-    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
-    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
-    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
+    final color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade800
+            : Color(0xFFE8F3F3);
+    final appbar_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade700
+            : Colors.white;
+    final welcome_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade800
+            : Color(0xFFE3E7E8);
+    final bodytext_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.white
+            : Color(0xFF303F46);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -44,10 +56,8 @@ class Settings_Screen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ProfilPage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfilPage()));
             },
             icon: Icon(
               CupertinoIcons.profile_circled,
@@ -150,7 +160,7 @@ class Settings_Screen extends StatelessWidget {
                     Center(
                       child: OutlinedButton(
                         onPressed: () {
-                          SchedulerBinding.instance!.addPostFrameCallback((_) {
+                          SchedulerBinding.instance.addPostFrameCallback((_) {
                             Auth.signout(context: context);
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
@@ -160,9 +170,9 @@ class Settings_Screen extends StatelessWidget {
                         },
                         child: Text("SIGN OUT",
                             style: TextStyle(
-                                fontSize: 16,
-                                letterSpacing: 2.2,
-                               )),
+                              fontSize: 16,
+                              letterSpacing: 2.2,
+                            )),
                       ),
                     )
                   ],
