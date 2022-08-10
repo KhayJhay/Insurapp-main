@@ -200,9 +200,9 @@ class _DigitalFormState extends State<DigitalForm> {
                                   InsuraData.addDigitalCard(
                                           context,
                                           userID.toString(),
-                                          cardModel.id,
+                                          cardModel,
                                           base64.encode(
-                                              imageFile.readAsBytesSync()))
+                                              imageFile.readAsBytesSync(),),)
                                       .then((value) {
                                     NotificationProvider().changeToRead(true);
                                     NotificationProvider()

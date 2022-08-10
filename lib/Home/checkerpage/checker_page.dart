@@ -33,19 +33,30 @@ class _Checker_PageState extends State<Checker_Page>
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
-    double _width= MediaQuery.of(context).size.width;
-    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
-    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
-    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
-    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Color(0xFF303F46);
+    double _width = MediaQuery.of(context).size.width;
+    final color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade800
+            : Color(0xFFE8F3F3);
+    final appbar_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade700
+            : Colors.white;
+    final welcome_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade800
+            : Color(0xFFE3E7E8);
+    final bodytext_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.white
+            : Color(0xFF303F46);
     return HeaderAppBar(
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(
-                 vertical: 30, horizontal: 15),
+              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
               child: Container(
                 width: _width * 0.43,
                 decoration: BoxDecoration(
@@ -73,7 +84,7 @@ class _Checker_PageState extends State<Checker_Page>
                         color: Colors.blueGrey,
                         fontFamily: 'Poppins-Bold'),
                     isScrollable: true,
-                    labelColor:  Color(0xFF44A8E0),
+                    labelColor: Color(0xFF44A8E0),
                     unselectedLabelColor: Colors.grey,
                     controller: _tabController,
                     tabs: [

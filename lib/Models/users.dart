@@ -17,7 +17,8 @@ class UserModel {
         uid: map['uid'],
         email: map['email'],
         username: map['username'],
-        number: map['number']);
+        number: map['number'],
+    );
   }
 
   //sending data to the server

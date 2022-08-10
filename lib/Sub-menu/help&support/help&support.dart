@@ -6,8 +6,6 @@ import 'package:insurapp/Sub-menu/about_insurapp.dart';
 import 'package:insurapp/Sub-menu/chat_screen/customer_serv_chat.dart';
 import 'package:insurapp/Sub-menu/help&support/Road%20Assistance.dart';
 import 'package:provider/provider.dart';
-
-import '../../Home/Navigation_drawer/menu_widget.dart';
 import '../../Home/change_theme_button_widget.dart';
 import '../../providers/theme_provider.dart';
 class Help_Support extends StatelessWidget {
@@ -32,9 +30,17 @@ class Help_Support extends StatelessWidget {
             height: 140,
             width: 200,
             child: Image.asset("assets/pngs/logobg1.png")),
-        leading: ChangeThemeButtonWidget(),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Mainpage()));
+          },
+          icon: Icon(
+            CupertinoIcons.chevron_back,
+            color: Colors.black,
+          ),
+        ),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell_solid, color: Colors.grey,size: 26,),),
+          ChangeThemeButtonWidget(),
         ],
       ),
       body: SingleChildScrollView(

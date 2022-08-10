@@ -1,25 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-//digital model
-// class DigitalIDModel {
-//   String? userId;
-//   String? profile;
-//   String? policyCard;
-//   DigitalIDModel({this.userId, this.profile, this.policyCard});
-//   DigitalIDModel.fromJson(Map<String, dynamic> json) {
-// userId = json['userId'];
-// profile = json['profile'];
-//     policyCard = json['policyCard'];
-//   }
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = <String, dynamic>{};
-// data['userId'] = userId;
-// data['profile'] = profile;
-//     data['policyCard'] = policyCard;
-//     return data;
-//   }
-// }
 
 class DigitalIDModel {
   String? userId;

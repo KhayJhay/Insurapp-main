@@ -23,7 +23,7 @@ class Auth {
   }
 
   //creating account
-  void createAccount(String username, String number) async {
+  void createAccount(String username, String number,) async {
     userModel.uid = FirebaseAuth.instance.currentUser!.uid;
     userModel.email = FirebaseAuth.instance.currentUser!.email;
     userModel.username = username;
@@ -36,12 +36,12 @@ class Auth {
 
   //SignUp
   void SignUpAuth(BuildContext context, GlobalKey<FormState> keyForm,
-      String username, String email, String number, String pass) async {
+      String username, String email, String number, String pass,) async {
     if (keyForm.currentState!.validate()) {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: pass)
           .then((uid) {
-        createAccount(username, number);
+        createAccount(username, number,);
         AwesomeDialog(
           context: context,
           dialogType: DialogType.SUCCES,

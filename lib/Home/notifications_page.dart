@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:insurapp/Sub-menu/settings_page.dart';
+import 'package:insurapp/Sub-menu/settings/settings_page.dart';
 import 'package:insurapp/Models/noty_model.dart';
 import 'package:insurapp/Widgets/appBarHead.dart';
 import 'package:insurapp/providers/notify_provider.dart';

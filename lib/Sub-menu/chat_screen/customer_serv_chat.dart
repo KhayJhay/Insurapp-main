@@ -1,4 +1,5 @@
 import 'package:chat_bubbles/chat_bubbles.dart';
+import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,9 +10,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/theme_provider.dart';
-import 'components/comming_message_bubble.dart';
-import 'components/dummy_data.dart';
-import 'components/message_buble.dart';
+import 'components/Messages.dart';
+
 
 class Chats_Page extends StatefulWidget {
   const Chats_Page({Key? key}) : super(key: key);
@@ -20,20 +20,18 @@ class Chats_Page extends StatefulWidget {
   State<Chats_Page> createState() => _Chats_PageState();
 }
 
-class Message {
-  final String text;
-  final DateTime date;
-  final bool isSentByMe;
-
-  const Message({
-    required this.text,
-    required this.date,
-    required this.isSentByMe,
-  });
-}
-
 class _Chats_PageState extends State<Chats_Page> {
-  TextEditingController _textEditingController = TextEditingController();
+  late DialogFlowtter dialogFlowtter;
+  final TextEditingController _controller = TextEditingController();
+
+  List<Map<String, dynamic>> messages = [];
+
+  @override
+  void initState() {
+    DialogFlowtter.fromFile().then((instance) => dialogFlowtter = instance);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
@@ -46,21 +44,7 @@ class _Chats_PageState extends State<Chats_Page> {
         child: Column(
           children: [
             Expanded(
-              child: ListView.builder(
-                itemCount: AppDummyData.messages.length,
-                itemBuilder: (ctx, i) {
-                  if (AppDummyData.messages[i].commingMessage) {
-                    return CommingMessageBuble(
-                      messageModel: AppDummyData.messages[i],
-                    );
-                  } else {
-                    return MessageBuble(
-                      messageModel: AppDummyData.messages[i],
-                    );
-                  }
-                },
-                reverse: false,
-              ),
+                child: MessagesScreen(messages: messages)
             ),
             SizedBox(
               height: 80,
@@ -86,6 +70,7 @@ class _Chats_PageState extends State<Chats_Page> {
                       ),
                       Expanded(
                         child: TextField(
+                          controller: _controller,
                           decoration: InputDecoration(
                             hintText: 'Type message',
                             hintStyle: const TextStyle(
@@ -113,7 +98,10 @@ class _Chats_PageState extends State<Chats_Page> {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          sendMessage(_controller.text);
+                          _controller.clear();
+                        },
                         icon: const Icon(
                           Icons.send_rounded,
                           color: AppColors.rose,
@@ -130,6 +118,28 @@ class _Chats_PageState extends State<Chats_Page> {
       ),
     );
   }
+
+  sendMessage(String text) async {
+    if (text.isEmpty) {
+      print('Message is empty');
+    } else {
+      setState(() {
+        addMessage(Message(text: DialogText(text: [text])), true);
+      });
+
+      DetectIntentResponse response = await dialogFlowtter.detectIntent(
+          queryInput: QueryInput(text: TextInput(text: text)));
+      if (response.message == null) return;
+      setState(() {
+        addMessage(response.message);
+      });
+    }
+  }
+
+  addMessage(Message? message, [bool isUserMessage = false]) {
+    messages.add({'message': message, 'isUserMessage': isUserMessage});
+  }
+
   AppBar _appBar(BuildContext context) {
     final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
     final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);

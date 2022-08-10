@@ -7,6 +7,7 @@ import 'package:insurapp/Home/edit_profile_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../Models/users.dart';
+import '../Sub-menu/settings/sub_pages/main_settings_page.dart';
 import '../providers/theme_provider.dart';
 import 'change_theme_button_widget.dart';
 import 'checkerpage/checker_page.dart';
@@ -35,11 +36,26 @@ class _ProfilPageState extends State<ProfilPage> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
-    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
-    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
-    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Colors.black;
+
+    final color =
+    Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+        ? Colors.grey.shade800
+        : Color(0xFFE8F3F3);
+    final appbar_color =
+    Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+        ? Colors.grey.shade700
+        : Colors.white;
+    final welcome_color =
+    Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+        ? Colors.grey.shade800
+        : Color(0xFFE3E7E8);
+    final bodytext_color =
+    Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+        ? Colors.white
+        : Colors.black;
+
     return Scaffold(
+      backgroundColor: Color(0xFFEFF3F4),
       appBar: AppBar(
         backgroundColor: appbar_color,
         elevation: 0,
@@ -50,9 +66,6 @@ class _ProfilPageState extends State<ProfilPage> {
             width: 200,
             child: Image.asset("assets/pngs/logobg1.png")),
         leading: ChangeThemeButtonWidget(),
-        actions: [
-          IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell_solid, color: Colors.grey,size: 26,),),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -65,7 +78,7 @@ class _ProfilPageState extends State<ProfilPage> {
                 color: Color(0xFF303F46),
                 image: DecorationImage(
                   image: AssetImage(
-                    "assets/images/profile.jpg",),
+                    "assets/images/pro.jpg",),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -96,7 +109,7 @@ class _ProfilPageState extends State<ProfilPage> {
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
                                         image: AssetImage(
-                                          "assets/images/profile.jpg",),
+                                          "assets/images/pro.jpg",),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -212,7 +225,7 @@ class _ProfilPageState extends State<ProfilPage> {
               padding: const EdgeInsets.only(top: 30.0,left: 38),
               child: InkWell(
                 onTap: (){
-                  Navigator.pushNamed(context, Edit_Profile_Page.id);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainSettingsPage()));
                 },
                 child: Container(
                   width: 200,
@@ -223,7 +236,7 @@ class _ProfilPageState extends State<ProfilPage> {
                       border: Border.all(color: Colors.grey,width: 0.5)
                   ),
                   child: Center(
-                    child: Text("EDIT PROFILE",
+                    child: Text("SETTING",
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey,
@@ -243,13 +256,14 @@ class _ProfilPageState extends State<ProfilPage> {
                     child: Text("INSURANCE",
                       style: TextStyle(
                         fontSize: 14,
+                        color: Color(0xFF303F46),
                         fontFamily: "Poppins-Bold",
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                    const EdgeInsets.only(left: 8.0, right: 15, top: 8),
+                    const EdgeInsets.only(left: 15.0, right: 15, top: 20),
                     child: Container(
                       height: 175,
                       width: _width * 0.95,
@@ -274,6 +288,7 @@ class _ProfilPageState extends State<ProfilPage> {
                                 child: Text(
                                   "Is Your Insurance\n Policy Valid?",
                                   style: TextStyle(
+                                      color: Color(0xFF303F46),
                                       fontFamily: 'Poppins-SemiBold',
                                       fontSize: 18),
                                 ),
