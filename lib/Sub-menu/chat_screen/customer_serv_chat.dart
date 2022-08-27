@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/cupertino.dart';
@@ -191,13 +192,23 @@ class _Chats_PageState extends State<Chats_Page> {
       actions: [
         IconButton(
           // ignore: avoid_print
-          onPressed: () => print('Call'),
           icon: SvgPicture.asset(
             'assets/svgs/phone_call.svg',
             height: 20,
             width: 20,
             color: AppColors.rose,
           ),
+          onPressed: (){
+            AwesomeDialog(
+            context: context,
+              dialogType: DialogType.WARNING,
+              animType: AnimType.SCALE,
+              title: 'Call Insurapp',
+              desc: "Couldn't place call now",
+              btnCancelOnPress: () {},
+              btnOkOnPress: () {},
+            )..show();
+          }
         ),
         IconButton(
           // ignore: avoid_print

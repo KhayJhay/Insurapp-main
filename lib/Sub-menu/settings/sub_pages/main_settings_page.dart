@@ -133,7 +133,8 @@ class _MainSettingsPageState extends State<MainSettingsPage> {
       padding: const EdgeInsets.only(top: 30, bottom: 30),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: AssetImage("assets/images/profile.jpg",),
+          backgroundColor: Colors.white,
+          backgroundImage: AssetImage("assets/pngs/logobg1.png",),
           radius: 40,
         ),
         title: Text("${loggedInUser.username}", style: TextStyle(fontSize: 14, fontFamily: 'Poppins-Medium'),),

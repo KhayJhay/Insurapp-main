@@ -25,15 +25,20 @@ class _My_Digital_IDState extends State<My_Digital_ID> {
     final digitalProvider = Provider.of<DigitalProvider>(context);
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-
+    DateTime now = DateTime.now();
+    var streamFunction = FirebaseFirestore.instance
+        .collection('digitalCard')
+        .where('userId', isEqualTo: FirebaseAuth.instance.currentUser.uid)
+        .snapshots();
     return StreamBuilder(
-      stream: FirebaseFirestore.instance
-          .collection('digitalCard')
-          .where('userId', isEqualTo: FirebaseAuth.instance.currentUser.uid)
-          .snapshots(),
+      stream: streamFunction,
       builder: (context,
           AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
         if (snapshot.data == null) {
+          return Center(
+            child: DigitalNullCard(),
+          );
+        } else if (snapshot.data.docs.isEmpty) {
           return Center(
             child: DigitalNullCard(),
           );
@@ -45,13 +50,15 @@ class _My_Digital_IDState extends State<My_Digital_ID> {
           _digiatal = DigitalIDModel.fromJson(
             snapshot.data.docs.first.data(),
           );
-          digitalProvider.addDigitalCard(_digiatal);
+          digitalProvider.addDigitalCard(context, _digiatal);
+
+
           return Center(
             child: DigitalCard(
               width: _width,
               height: _height,
               digiatal: _digiatal,
-              isActive: isActive,
+              isActive: digitalProvider.isExpira,
             ),
           );
         }

@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import '../Models/insura_.model.dart';
 
 //class for insuradata
+
+//class for insuradata
 class InsuraData {
   //get insura data
   Future getInsuraData(BuildContext context, String id) async {}
@@ -21,11 +23,10 @@ class InsuraData {
     bool isExpira;
 
     var response;
-    late bool isCheck;
 
     //getting all policy
     final collectionReference =
-        FirebaseFirestore.instance.collection('insuracard');
+    FirebaseFirestore.instance.collection('insuracard');
 
     try {
       await collectionReference.get().then((value) {

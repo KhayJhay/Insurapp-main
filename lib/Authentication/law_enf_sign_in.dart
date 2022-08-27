@@ -1,26 +1,20 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:insurapp/Authentication/resetpassword.dart';
 import 'package:insurapp/Authentication/userCredential.dart';
-import '../Models/users.dart';
-import '../Widgets/authWedget.dart';
-import 'resetpassword.dart';
+import 'package:insurapp/Authentication/verify_law_enforcer.dart';
+import 'package:insurapp/Widgets/authWedget.dart';
 
-class Login_Register_Page extends StatefulWidget {
-  const Login_Register_Page({Key? key}) : super(key: key);
-
+class Law_Enf_Login_Page extends StatefulWidget {
   @override
-  State<Login_Register_Page> createState() => _Login_Register_PageState();
+  State<Law_Enf_Login_Page> createState() => _Law_Enf_Login_PageState();
 }
 
-class _Login_Register_PageState extends State<Login_Register_Page> {
+class _Law_Enf_Login_PageState extends State<Law_Enf_Login_Page> {
   final keyForm = GlobalKey<FormState>();
 
   bool isSignupScreen = true;
@@ -33,13 +27,6 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
   final mobileController = TextEditingController();
 
   bool isCheck = false;
-
-  late File imageFile;
-
-  /// Get from gallery
-
-  /// Get from gallery
-
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
@@ -56,7 +43,7 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    "assets/images/bg.webp",
+                    "assets/images/law1.jpg",
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -101,12 +88,11 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
                     ),
                     Text(
                       isSignupScreen
-                          ? "Signup to Continue"
-                          : "Signin to Continue",
+                          ? "Signup As a Law-Enforcer"
+                          : "Signin As a Law-Enforcer",
                       style: TextStyle(
                         fontSize: 16,
-                        fontFamily: 'Poppins-Light',
-                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Poppins-Bold',
                         color: Colors.white,
                         letterSpacing: 3,
                       ),
@@ -312,8 +298,8 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              buildTextField(
-                  emailController, CupertinoIcons.mail, "Email", false, true),
+              buildTextField(emailController, CupertinoIcons.mail,
+                  "Enter Force ID", false, true),
               buildTextField(passController, CupertinoIcons.lock_circle,
                   "Enter Password", true, false),
               Row(
@@ -413,7 +399,6 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
                     )
                   ]),
             ),
-
           ],
         ),
       ),
@@ -448,24 +433,10 @@ class _Login_Register_PageState extends State<Login_Register_Page> {
                   child: !showShadow
                       ? GestureDetector(
                           onTap: () {
-                            setState(() {
-                              isLoading = true;
-                            });
-                            isSignupScreen
-                                ? Auth().SignUpAuth(
-                                    context,
-                                    keyForm,
-                                    nameController.text,
-                                    emailController.text,
-                                    mobileController.text,
-                                    passController.text)
-                                : Auth().loginAuth(context, keyForm,
-                                    emailController.text, passController.text);
-                            Timer(Duration(seconds: 2), () {
-                              setState(() {
-                                isLoading = false;
-                              });
-                            });
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Verfify_Law_Enf_Page()));
                           },
                           child: Container(
                             decoration: BoxDecoration(

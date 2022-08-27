@@ -57,9 +57,18 @@ class _StartClaimState extends State<StartClaim> {
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
-    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
-    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
-    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Colors.black;
+    final appbar_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade700
+            : Colors.white;
+    final welcome_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade800
+            : Color(0xFFE3E7E8);
+    final bodytext_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.white
+            : Colors.black;
     return HeaderAppBar(
       child: SingleChildScrollView(
         child: Column(
@@ -84,18 +93,50 @@ class _StartClaimState extends State<StartClaim> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: Column(
+                children: [
+                  Text(
+                    'Create A New Claim',
+                    style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 18,
+                        fontFamily: 'Poppins-Regular'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Text(
+                      'Please  go through the process below to tell us about your incident or the problem you are facing',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 13, fontFamily: 'Poppins-Regular'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.all(30.0),
+              padding: const EdgeInsets.all(20.0),
               child: Center(
                 child: Stepper(
                   steps: [
                     Step(
-                      title: Text("Start Claim"),
+                      title: Text(
+                        "Start Claim",
+                      ),
                       content: Text("Initialize Claim"),
+                      isActive: _currentStep >= 0,
                     ),
                     Step(
                       title: Text("Share Media"),
                       subtitle: Text("Share Images or Video"),
+                      isActive: _currentStep >= 1,
                       content: Column(
                         children: [
                           isSelected
@@ -120,6 +161,7 @@ class _StartClaimState extends State<StartClaim> {
                     Step(
                       title: Text("Add Location"),
                       subtitle: Text("Add Location of Incident"),
+                      isActive: _currentStep >= 2,
                       content: TextFormField(
                         controller: locaText,
                         decoration: InputDecoration(
@@ -133,12 +175,17 @@ class _StartClaimState extends State<StartClaim> {
                     ),
                     Step(
                         title: Text("Submit Claim"),
+                        isActive: _currentStep >= 3,
                         content: Text("Submit claim for Claim")),
                     Step(
                         title: Text("Claim Completed"),
+                        isActive: _currentStep >= 4,
                         content: Text("Claim processed succesfully")),
                   ],
                   currentStep: _currentStep,
+                  onStepTapped: (index) {
+                    setState(() => _currentStep = index);
+                  },
                   onStepCancel: () {
                     setState(() {
                       if (_currentStep >= 4) {

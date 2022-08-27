@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../Home/checkerpage/checker_page.dart';
 import '../Home/checkerpage/digitalForm.dart';
 import '../Home/checkerpage/policy_details.dart';
 import '../Models/insura_.model.dart';
@@ -16,11 +17,10 @@ class DigitalNullCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final appbar_color =
-        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-            ? Colors.grey.shade700
-            : Colors.white;
+    Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+        ? Colors.grey.shade700
+        : Colors.white;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -47,7 +47,7 @@ class DigitalNullCard extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DigitalForm()),
+                MaterialPageRoute(builder: (context) => Checker_Page()),
               );
             },
             child: Container(
@@ -81,39 +81,48 @@ class DigitalNullCard extends StatelessWidget {
   }
 }
 
-
 class DigitalCard extends StatefulWidget {
   const DigitalCard({
     Key? key,
     required double width,
     required double height,
     required DigitalIDModel digiatal,
-    // required InsuraCardModel digitalIDModel,
     required this.isActive,
   })  : _width = width,
         _height = height,
         _digiatal = digiatal,
-        //_digitalIDModel = digitalIDModel,
         super(key: key);
 
   final double _width;
   final double _height;
   final DigitalIDModel _digiatal;
-  //final InsuraCardModel _digitalIDModel;
   final bool isActive;
 
   @override
   State<DigitalCard> createState() => _DigitalCardState();
 }
+
 class _DigitalCardState extends State<DigitalCard> {
+  late InsuraCardModel cardModel = InsuraCardModel();
   @override
-  InsuraCardModel cardModel = InsuraCardModel();
-  bool isActive = false;
   Widget build(BuildContext context) {
+    cardModel = InsuraCardModel(
+        id: widget._digiatal.userId,
+        policyNumber: widget._digiatal.policyNumber,
+        year: widget._digiatal.year,
+        maker: widget._digiatal.maker,
+        model: widget._digiatal.model,
+        effectiveDate: widget._digiatal.effectiveDate,
+        expirationDate: widget._digiatal.expirationDate,
+        company: widget._digiatal.company,
+        vin: widget._digiatal.vin,
+        naic: widget._digiatal.naic,
+        insured: widget._digiatal.insured);
+
     final appbar_color =
-        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-            ? Colors.grey.shade700
-            : Colors.white;
+    Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+        ? Colors.grey.shade700
+        : Colors.white;
     //
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,34 +197,22 @@ class _DigitalCardState extends State<DigitalCard> {
                                   TextSpan(
                                     text: "${widget._digiatal.insured}",
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       color: Color(0xFF303F46),
                                       fontFamily: "Poppins-Bold",
                                     ),
                                   ),
                                   TextSpan(
-                                    text: widget.isActive
-                                        ? "  " "Verified"
-                                        : " " "Not Verified",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: widget.isActive
-                                          ? Color(0xFF1D95DA)
-                                          : Colors.red,
-                                      fontFamily: "Poppins-Light",
-                                    ),
-                                  ),
-                                  TextSpan(
                                     text: "\n${widget._digiatal.company}",
                                     style: TextStyle(
-                                      fontSize: 11,
+                                      fontSize: 12,
                                       color: Color(0xFF303F46),
                                       fontFamily: "Poppins-Bold",
                                     ),
                                   ),
                                   TextSpan(
                                     text:
-                                        "\nID: ${widget._digiatal.policyNumber}",
+                                    "\nID: ${widget._digiatal.policyNumber}",
                                     style: TextStyle(
                                       fontSize: 13,
                                       color: Colors.grey,
@@ -261,25 +258,19 @@ class _DigitalCardState extends State<DigitalCard> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(top: 15.0, right: 25, left: 25),
+                  const EdgeInsets.only(top: 15.0, right: 25, left: 25),
                   child: Center(
-                    child: GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => PolicyDetails(
-                                cardModel: cardModel, isActive: isActive),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        "VIEW FULL ID",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                          letterSpacing: 2,
-                          fontFamily: "Poppins-SemiBold",
-                        ),
+                    child: Text(
+                      widget.isActive
+                          ? "  " "Verified"
+                          : " " "Not Verified",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: widget.isActive
+                            ? Color(0xFF1D95DA)
+                            : Colors.red,
+                        letterSpacing: 2,
+                        fontFamily: "Poppins-Light",
                       ),
                     ),
                   ),
@@ -289,179 +280,6 @@ class _DigitalCardState extends State<DigitalCard> {
           ),
         ),
         //title
-        Padding(
-          padding: const EdgeInsets.all(14.0),
-          child: Text(
-            "ID Status",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: "Poppins-Bold",
-              fontSize: 20,
-            ),
-          ),
-        ),
-        //card
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: Container(
-              width: widget._width,
-              height: widget._height <= 700 ? 185 : 200,
-              decoration: BoxDecoration(
-                color: appbar_color,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      spreadRadius: 3),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(width: 200),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          CupertinoIcons.ellipsis,
-                          color: Color(0xFF303F46),
-                        ),
-                      ),
-                    ],
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Row(
-                      children: [
-                        Icon(
-                          widget.isActive
-                              ? CupertinoIcons.check_mark_circled
-                              : CupertinoIcons.multiply_circle,
-                          size: widget._height <= 700 ? 50 : 60,
-                          color:
-                              widget.isActive ? Color(0xFFA7CD3A) : Colors.red,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              FittedBox(
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: widget.isActive
-                                            ? "Insurance Policy Active"
-                                            : "Insurance Policy Inactive",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: widget.isActive
-                                              ? Color(0xFFA7CD3A)
-                                              : Colors.red,
-                                          fontFamily: "Poppins-Bold",
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: "\n${widget._digiatal.company}",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: widget.isActive
-                                              ? Color(0xFF303F46)
-                                              : Colors.red,
-                                          fontFamily: "Poppins-Bold",
-                                        ),
-                                      ),
-                                      TextSpan(
-                                          text: "\n${widget._digiatal.model}",
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.grey,
-                                            fontFamily: "Poppins-Regular",
-                                          )),
-                                    ],
-                                  ),
-                                  textAlign: TextAlign.start,
-                                  softWrap: true,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(top: widget._height <= 700 ? 9 : 12.0),
-                    child: Divider(
-                      color: Colors.grey,
-                      thickness: 0.3,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: widget._height <= 700 ? 13 : 15.0,
-                        right: 25,
-                        left: 25),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            // Navigator.of(context).push(
-                            //   MaterialPageRoute(
-                            //     builder: (_) => PolicyDetails(
-                            //         cardModel: widget._digiatal,
-                            //         isActive: widget.isActive),
-                            //   ),
-                            // );
-                          },
-                          child: Text(
-                            "REVIEW",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey,
-                              letterSpacing: 2,
-                              fontFamily: "Poppins-SemiBold",
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Text(
-                            "SEND MEMO",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey,
-                              letterSpacing: 2,
-                              fontFamily: "Poppins-SemiBold",
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Text(
-                            "SHARE",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey,
-                              letterSpacing: 2,
-                              fontFamily: "Poppins-SemiBold",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              )),
-        ),
       ],
     );
   }

@@ -7,7 +7,7 @@ import 'package:insurapp/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'Authentication/userCredential.dart';
 import 'Home/edit_profile_page.dart';
 import 'Home/mainpage.dart';
@@ -16,7 +16,9 @@ import 'Sub-menu/settings/settings_page.dart';
 import 'OnBording/splash_screen.dart';
 import 'providers/dig_providers.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -27,11 +29,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MultiProvider(
         providers: [
           ChangeNotifierProvider(
-              create: (BuildContext context) => DigitalProvider(),),
+            create: (BuildContext context) => DigitalProvider(),
+          ),
           ChangeNotifierProvider(
-              create: (BuildContext context) => NotificationProvider(),),
+            create: (BuildContext context) => NotificationProvider(),
+          ),
           ChangeNotifierProvider(
-              create: (context) => ThemeProvider(),),
+            create: (context) => ThemeProvider(),
+          ),
         ],
         child: FutureBuilder(
             future: Auth.initializeFirebase(),

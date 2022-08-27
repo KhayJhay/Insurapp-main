@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:insurapp/OnBording/insurappbg.dart';
 import 'dart:async';
 import 'package:insurapp/OnBording/introduction_page.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,15 +14,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(
-        Duration(seconds: 5),(){
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => IntroductionScreen()));
+    Timer(Duration(seconds: 5), () {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => InsurappBackground()));
     });
     super.initState();
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -34,7 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               SizedBox(
                 width: 350,
-                child: Image.asset("assets/pngs/logobg2.png",
+                child: Image.asset(
+                  "assets/pngs/logobg2.png",
                   fit: BoxFit.cover,
                 ),
               ),

@@ -127,9 +127,7 @@ class _Settings_ScreenState extends State<Settings_Screen> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: digitalIDModel.profile == ''
-                            ? AssetImage("assets/images/profile.jpg")
-                            : AssetImage("${digitalIDModel.profile}"),
+                        image:AssetImage("assets/pngs/logobg2.png",),
                       ),
                     ),
                   ),

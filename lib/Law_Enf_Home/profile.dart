@@ -1,64 +1,25 @@
 import 'dart:ui';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:insurapp/Home/edit_profile_page.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
-import '../Models/users.dart';
+
+import '../Home/change_theme_button_widget.dart';
+import '../Home/checkerpage/checker_page.dart';
 import '../Sub-menu/settings/sub_pages/main_settings_page.dart';
-import '../providers/theme_provider.dart';
-import 'change_theme_button_widget.dart';
-import 'checkerpage/checker_page.dart';
 
-class ProfilPage extends StatefulWidget {
-  const ProfilPage({Key? key}) : super(key: key);
-
+class Law_Profile_Page extends StatefulWidget {
   @override
-  State<ProfilPage> createState() => _ProfilPageState();
+  State<Law_Profile_Page> createState() => _Law_Profile_PageState();
 }
 
-class _ProfilPageState extends State<ProfilPage> {
-  User? user = FirebaseAuth.instance.currentUser;
-  UserModel loggedInUser = UserModel();
+class _Law_Profile_PageState extends State<Law_Profile_Page> {
   @override
-  void initState() {
-    super.initState();
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(user!.uid)
-        .get()
-        .then((value) {
-      this.loggedInUser = UserModel.fromJson(value.data());
-      setState(() {});
-    });
-  }
-
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-
-    final color =
-        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-            ? Colors.grey.shade800
-            : Color(0xFFE8F3F3);
-    final appbar_color =
-        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-            ? Colors.grey.shade700
-            : Colors.white;
-    final welcome_color =
-        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-            ? Colors.white
-            : Color(0xFFE3E7E8);
-    final bodytext_color =
-        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-            ? Colors.white
-            : Colors.black;
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appbar_color,
+        backgroundColor: Colors.white,
         elevation: 0,
         toolbarHeight: 75,
         centerTitle: true,
@@ -123,7 +84,7 @@ class _ProfilPageState extends State<ProfilPage> {
                                       top: 8.0,
                                     ),
                                     child: Text(
-                                      "${loggedInUser.username}",
+                                      "IL POLICE",
                                       style: TextStyle(
                                           fontSize: 14,
                                           color: Colors.black87,
@@ -131,7 +92,7 @@ class _ProfilPageState extends State<ProfilPage> {
                                     ),
                                   ),
                                   Text(
-                                    "${loggedInUser.email}",
+                                    "User@gmail.com",
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.black87,
@@ -290,7 +251,7 @@ class _ProfilPageState extends State<ProfilPage> {
                       height: 175,
                       width: _width * 0.95,
                       decoration: BoxDecoration(
-                        color: color,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(25),
                         boxShadow: [
                           BoxShadow(
@@ -310,7 +271,7 @@ class _ProfilPageState extends State<ProfilPage> {
                                 child: Text(
                                   "Is Your Insurance\n Policy Valid?",
                                   style: TextStyle(
-                                      color: bodytext_color,
+                                      color: Colors.teal,
                                       fontFamily: 'Poppins-SemiBold',
                                       fontSize: 18),
                                 ),
@@ -363,142 +324,6 @@ class _ProfilPageState extends State<ProfilPage> {
                       ),
                     ),
                   ),
-                  /*StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance.collection('insurance status').snapshots(),
-                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if(!snapshot.hasData){
-                        return Center(
-                          child: CircularProgressIndicator(color: Colors.blue,),
-                        );
-                      }else{
-                        return Column(
-                          children: <Widget>[
-                        ...snapshot.data!.docs.map((QueryDocumentSnapshot<Object?>data){
-                          final String polNumber = data.get('policyNumber');
-                          final String company = data.get('company');
-                          final String status = data.get('status');
-                         return Padding(
-                            padding: const EdgeInsets.only(top:10.0,left: 20,right: 20),
-                            child: Container(
-                                width: _width,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black.withOpacity(0.1),
-                                        blurRadius: 10,
-                                        spreadRadius: 3),
-                                  ],
-                                ),
-                                child: Column(
-                                  children: <Widget>[
-                                    Row(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            SizedBox(width: 315,),
-                                            IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.ellipsis, color: Color(0xFF303F46),))
-                                          ],
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20.0),
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            CupertinoIcons.check_mark_circled,
-                                            size: 60,
-                                            color: Color(0xFFA7CD3A),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 12.0),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Center(
-                                                  child: Column(
-                                                    children: [
-                                                      Text("Your Policy Status is "+status,
-                                                        style: TextStyle(
-                                                        fontSize: 13,
-                                                        color: Color(0xFF303F46),
-                                                        fontFamily: "Poppins-Bold",
-                                                      ),),
-                                                      Text(company,
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color:  Color(0xFFA7CD3A),
-                                                          fontFamily: "Poppins-Bold",
-                                                        ),),
-                                                      Text("Your Policy Status is "+ polNumber,
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.grey,
-                                                          fontFamily: "Poppins-Light",
-                                                        ),),
-                                                    ],
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 12.0),
-                                      child: Divider(
-                                        color: Colors.grey,
-                                        thickness: 0.3,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top:15.0,right: 25,left: 25),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text("REVIEW",
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.grey,
-                                              letterSpacing: 2,
-                                              fontFamily: "Poppins-SemiBold",
-                                            ),
-                                          ),
-                                          Text("SEND MEMO",
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.grey,
-                                              letterSpacing: 2,
-                                              fontFamily: "Poppins-SemiBold",
-                                            ),
-                                          ),
-                                          Text("SHARE",
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.grey,
-                                              letterSpacing: 2,
-                                              fontFamily: "Poppins-SemiBold",
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )
-                            ),
-                          );
-                        }
-                        )]
-                        );
-                      }
-                    }
-                  ), */
                 ],
               ),
             )

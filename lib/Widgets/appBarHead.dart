@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:insurapp/Home/mainpage.dart';
 import 'package:provider/provider.dart';
 
 import '../Home/notifications_page.dart';
@@ -19,9 +20,18 @@ class _HeaderAppBarState extends State<HeaderAppBar> {
   @override
   Widget build(BuildContext context) {
     isOpen = Provider.of<NotificationProvider>(context).isRead;
-    final appbar_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade700 : Colors.white;
-    final welcome_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE3E7E8);
-    final bodytext_color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.white : Colors.black;
+    final appbar_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade700
+            : Colors.white;
+    final welcome_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.grey.shade800
+            : Color(0xFFE3E7E8);
+    final bodytext_color =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? Colors.white
+            : Colors.black;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -34,7 +44,8 @@ class _HeaderAppBarState extends State<HeaderAppBar> {
             child: Image.asset("assets/pngs/logobg1.png")),
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Mainpage()));
           },
           icon: Icon(
             CupertinoIcons.chevron_back,

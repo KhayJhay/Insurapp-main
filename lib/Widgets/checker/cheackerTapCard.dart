@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:insurapp/Models/users.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +22,7 @@ class CheckerTab extends StatefulWidget {
   State<CheckerTab> createState() => _CheckerTabState();
 }
 
+
 class _CheckerTabState extends State<CheckerTab> {
   final idNumberController = TextEditingController();
   InsuraCardModel cardModel = InsuraCardModel();
@@ -28,11 +31,33 @@ class _CheckerTabState extends State<CheckerTab> {
   bool isActive = false;
   bool isLoading = false;
 
+  User? user = FirebaseAuth.instance.currentUser;
+  UserModel loggedInUser = UserModel();
+  bool isOpen = false;
+
+  //getting users by default
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      this.loggedInUser = UserModel.fromJson(value.data());
+      setState(() {});
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
+    final color =
+    Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+        ? Colors.grey.shade800
+        : Color(0xFFE8F3F3);
     var userName = FirebaseAuth.instance.currentUser!.displayName;
 
     return Column(
@@ -58,7 +83,7 @@ class _CheckerTabState extends State<CheckerTab> {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 60.0, right: 60, top: 30),
+                  const EdgeInsets.only(left: 60.0, right: 60, top: 30),
                   child: Lottie.asset('assets/lotties/check.json'),
                 ),
                 Column(
@@ -67,7 +92,7 @@ class _CheckerTabState extends State<CheckerTab> {
                     Padding(
                       padding: const EdgeInsets.all(14.0),
                       child: Text(
-                        "Hello, $userName! Check Your \nVehicle Policy Status Here",
+                        "Hello, ${loggedInUser.username}! Check Your \nVehicle Policy Status Here",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: "Poppins-Bold",
@@ -149,7 +174,12 @@ class _CheckerTabState extends State<CheckerTab> {
                                 topRight: Radius.circular(8),
                                 bottomRight: Radius.circular(8)),
                           ),
-                          child: isLoading ? SpinKitSpinningLines(color: Colors.white, size: 30,) : Icon(
+                          child: isLoading
+                              ? SpinKitSpinningLines(
+                            color: Colors.white,
+                            size: 30,
+                          )
+                              : Icon(
                             CupertinoIcons.search,
                             color: Colors.white,
                             size: 26,
@@ -175,21 +205,19 @@ class _CheckerTabState extends State<CheckerTab> {
           ),
         ),
         if (isSearch == false)
-          // policy card status message
+        // policy card status message
           Padding(
             padding: const EdgeInsets.all(18.0),
-            child: Expanded(
-              child: Container(
-                height: 100,
-                child: Center(
-                  child: Text(
-                    'No policy card status here',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                      letterSpacing: 2,
-                      fontFamily: "Poppins-SemiBold",
-                    ),
+            child: Container(
+              height: 100,
+              child: Center(
+                child: Text(
+                  'No policy card status here',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                    letterSpacing: 2,
+                    fontFamily: "Poppins-SemiBold",
                   ),
                 ),
               ),
@@ -203,7 +231,10 @@ class _CheckerTabState extends State<CheckerTab> {
   // status card
   Padding statusCard(
       double _width, double _height, InsuraCardModel cardModel, bool isActive) {
-    final color = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark ? Colors.grey.shade800 : Color(0xFFE8F3F3);
+    final color =
+    Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+        ? Colors.grey.shade800
+        : Colors.white;
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Container(
@@ -234,8 +265,8 @@ class _CheckerTabState extends State<CheckerTab> {
                         MaterialPageRoute(
                           builder: (_) => DigitalForm(
                             cardID: cardModel.id,
-                            policyID: cardModel.policyNumber,
                             isActive: isActive,
+                            cardModel: cardModel,
                           ),
                         ),
                       );
@@ -261,31 +292,39 @@ class _CheckerTabState extends State<CheckerTab> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
-                      child: Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text( isActive
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            isActive
                                 ? "Insurance Policy Active"
-                                : "Insurance Policy Inactive", style: TextStyle(fontSize: 16,
-                              color: isActive
-                                  ? Color(0xFFA7CD3A)
-                                  : Colors.red,
-                              fontFamily: "Poppins-Bold",),),
-                            Text(
-                              "${cardModel.company}",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(fontSize: 11,
-                              color: isActive
-                                  ? Colors.white60
-                                  : Colors.red,
-                              fontFamily: "Poppins-Bold",),),
-                            Text("Insurance type: Vehicle Insurance", style: TextStyle(fontSize: 13,
+                                : "Insurance Policy Inactive",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color:
+                              isActive ? Color(0xFFA7CD3A) : Colors.red,
+                              fontFamily: "Poppins-Bold",
+                            ),
+                          ),
+                          Text(
+                            "${cardModel.company}",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: isActive ? Colors.white60 : Colors.red,
+                              fontFamily: "Poppins-Bold",
+                            ),
+                          ),
+                          Text(
+                            "Insurance type: Vehicle Insurance",
+                            style: TextStyle(
+                              fontSize: 13,
                               color: Colors.grey,
-                              fontFamily: "Poppins-Light",),),
-                          ],
-                        ),
+                              fontFamily: "Poppins-Light",
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -302,7 +341,7 @@ class _CheckerTabState extends State<CheckerTab> {
                 padding: EdgeInsets.only(
                     top: _height <= 700 ? 13 : 15.0, right: 25, left: 25),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
                       onTap: () {
@@ -316,31 +355,7 @@ class _CheckerTabState extends State<CheckerTab> {
                       child: Text(
                         "REVIEW",
                         style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                          letterSpacing: 2,
-                          fontFamily: "Poppins-SemiBold",
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        "SEND MEMO",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                          letterSpacing: 2,
-                          fontFamily: "Poppins-SemiBold",
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        "SHARE",
-                        style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 16,
                           color: Colors.grey,
                           letterSpacing: 2,
                           fontFamily: "Poppins-SemiBold",
